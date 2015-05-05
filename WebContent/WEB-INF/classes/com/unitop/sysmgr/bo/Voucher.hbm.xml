@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.unitop.sysmgr.bo.Voucher" table="PINGZPZB">
+        <id name="pingzbs" type="java.lang.String">
+            <column name="PINGZBS" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="pingzmc" type="java.lang.String">
+            <column name="PINGZMC" length="100" not-null="true" />
+        </property>
+        <property name="yanyjb" type="java.lang.String">
+            <column name="YANYJB" length="3" />
+        </property>
+        <property name="shifqy" type="java.lang.String">
+            <column name="SHIFQY" length="1" />
+        </property>
+        <property name="pingzhqz" type="java.lang.String">
+            <column name="PINGZHQZ" length="10" />
+        </property>
+        <property name="meibzs" type="java.lang.Integer">
+            <column name="MEIBZS" />
+        </property>
+        <property name="shifzk" type="java.lang.String">
+            <column name="SHIFZK" length="1" />
+        </property>
+        <property name="jigh" type="java.lang.String">
+            <column name="jigh" length="12" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>Application Tag Library</shortname>
+	<uri>http://www.unitop.com/tablib</uri>
+	<info>unitop tag lib</info>
+	<tag>
+		<name>tableForZhucb</name>
+		<tagclass>com.sinodata.table.tag.TableTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>If the table is master table, show the message of the tag.</info>
+	</tag>	
+	<tag>
+		<name>tableTagForzhuj</name>
+		<tagclass>com.sinodata.table.tag.TableTagForzhuj</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>If the table is son table, show the master key can modify</info>
+	</tag>
+	<tag>
+		<name>tableTagForzhiblianj</name>
+		<tagclass>com.sinodata.table.tag.TableTagForzhiblianj</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>shou son table Linked</info>
+		<attribute>
+  		<name>name</name>
+	  	<required>true</required>
+	  	<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

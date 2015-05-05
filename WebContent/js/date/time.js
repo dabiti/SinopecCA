@@ -1,0 +1,1 @@
+document.write("<script src='js/date/WdatePicker.js' type='text/javascript'></script>");

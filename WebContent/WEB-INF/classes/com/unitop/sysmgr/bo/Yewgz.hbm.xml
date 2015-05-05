@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.Yewgz" table="YEWGZ">
+		<id name="yuansid" type="string" column="yuansid" length="12">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="yuansname" type="string" column="yuansname" length="12" />
+		<property name="yuansstyle" type="string" column="yuansstyle" length="70"/>
+		<property name="maxlength" type="string" column="maxlength" length="4"/>
+		<property name="styleClass" type="string" column="styleClass" length="20"/>
+		<property name="validaterule" type="string" column="validaterule" length="50"/>
+		<property name="msgid" type="string" column="msgid" length="20"/>
+		<property name="isreadonly" type="string" column="isreadonly" length="5"/>
+		<property name="remark" type="string" column="remark" length="500"/>
+	</class>
+	</hibernate-mapping>

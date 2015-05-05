@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.Nighttaskconfig" table="nighttaskconfig">
+		<id name="id" type="string" column="ID" length="20">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="taskname" type="string" column="TASKNAME" length="40" />
+		<property name="tasktype" type="string" column="TASKTYPE" length="10"/>
+		<property name="lastruntime" type="string" column="LASTRUNTIME" length="20"/>
+		<property name="lastrunresult" type="string" column="LASTRUNRESULT" length="1"/>
+		<property name="timetype" type="string" column="TIMETYPE" length="10"/>
+		<property name="timevalue" type="string" column="TIMEVALUE" length="2"/>
+
+		<property name="parametertype" type="string" column="PARAMETERTYPE" length="10"/>
+		<property name="parametervalue" type="string" column="PARAMETERVALUE" length="500"/>
+
+		<property name="taskurl" type="string" column="TASKURL" length="100"/>
+
+	</class>
+	</hibernate-mapping>

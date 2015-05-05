@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.unitop.sysmgr.bo.Danbwhgxb" table="DANBWHGXB">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="50" />
+            <generator class="uuid" />
+        </id>
+        <property name="zhubbh" type="java.lang.String">
+            <column name="ZHUBBH" length="50" />
+        </property>
+        <property name="zibbh" type="java.lang.String">
+            <column name="ZIBBH" length="50" />
+        </property>
+        <property name="zhubzd" type="java.lang.String">
+            <column name="ZHUBZD" length="50" />
+        </property>
+        <property name="zibzd" type="java.lang.String">
+            <column name="ZIBZD" length="50" />
+        </property>
+        <property name="shifljzd" type="string" column="shifljzd" length="1"/>
+        <property name="zhibwhmc" type="string" column="ZHIBWHMC" length="50"/>
+    </class>
+</hibernate-mapping>

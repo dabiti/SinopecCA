@@ -1,0 +1,18 @@
+Body {  
+scrollbar-face-color:#C0C0C0;
+scrollbar-highlight-color:#FFFFFF;
+scrollbar-3dlight-color:#C0C0C0;
+scrollbar-darkshadow-color:#000000;
+scrollbar-Shadow-color:#808080;
+scrollbar-arrow-color:#000000;
+scrollbar-track-color:#E0E0E0;
+}
+td {
+	font-size:12px;
+	color: #000;
+	text-decoration: none
+	}
+a:link{color:1D3C4E;text-decoration: none}
+a:visited{color:204A63;text-decoration: none}
+a:hover{color:1D3C4E;text-decoration: underline}
+a.new:link,a.new:visited{color:FF6600;line-height:150%; text-decoration: none}

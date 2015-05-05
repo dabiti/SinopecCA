@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.sys.PeizDpi" table="peizdpi">
+		<id name="dpiid" type="string" column="DPIID" length="5">
+		<generator class="assigned">
+		</generator>
+		</id>
+		<property name="diqh" type="string" column="diqh" length="5"/>
+		<property name="wangdh" type="string" column="wangdh" length="5"/>
+		<property name="yewlx" type="string" column="yewlx" length="3"/>
+		<property name="secbz" type="string" column="secbz" length="1"/>
+		<property name="dpi" type="string" column="dpi" length="3"/>
+		<property name="tiaoycs" type="string" column="tiaoycs" length="100"/>
+	</class>
+</hibernate-mapping>

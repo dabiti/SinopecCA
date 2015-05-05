@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.Tisxx" table="TISXX">
+		<id name="msgId" type="string" column="msgid" length="50">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="msgContent" type="string" column="msgContent" length="70"/>
+		<property name="functionArea" type="string" column="functionarea" length="50"/>
+		<property name="functionPoint" type="string" column="functionpoint" length="50"/>
+		<property name="remark" type="string" column="remark" length="500"/>
+	</class>
+	</hibernate-mapping>
+

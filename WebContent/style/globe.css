@@ -1,0 +1,26 @@
+/* CSS Document */
+body {
+	margin:0px; 
+	padding:0px; 
+	background:#999;
+	font-family:Geneva, Arial, Helvetica, sans-serif; 
+	font-size:12px;
+	line-height:180%;
+	background-image: url(../images/body_bg.gif);
+SCROLLBAR-FACE-COLOR: #0072BC; SCROLLBAR-HIGHLIGHT-COLOR: #0072BC; SCROLLBAR-SHADOW-COLOR: #999999; SCROLLBAR-3DLIGHT-COLOR: #FFFFFF; SCROLLBAR-ARROW-COLOR: #000000; SCROLLBAR-TRACK-COLOR: #E3E3E3; SCROLLBAR-DARKSHADOW-COLOR: #666666;}
+td {
+	font-size:12px;}
+.buttom1 {color:#000000;font-size:12px; line-height: 120%; background-image:  url(../images/button_on.gif);border-width:1px 1px 1px 1px;border-color:#ffffff #cccccc #cccccc #ffffff; padding-top: 1px; padding-left: 1px; padding-right: 1px;border-style: outset;cursor: hand;}
+.buttom2 {color:#000000;font-size:12px;line-height: 120%;background-image:  url(../images/button_off.gif);border-width:1px 1px 1px 1px;border-color:#ffeecc #ffcc33 #ffcc33 #ffeecc;padding-top: 1px; padding-left: 1px; padding-right: 1px;border-style:inset;cursor:hand;}
+.orange {
+	font-family:arial,verdana,sans-serif;
+	font-size:12px;	line-height:180%;
+	text-decoration:none;
+	font-weight:bold;
+	color:#CC0000;
+	background-color:#FFCEFF;}
+.inputField {
+	border:1px #ccc solid;
+	width:80px;
+	color:#000;
+	padding-left:3px;}

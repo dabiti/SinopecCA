@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.SystemControlParameter" table="BSKONGZCS">
+		<id name="id" type="string" column="CANSID" length="10">
+		<generator class="assigned">
+		</generator>
+		</id>
+		<property name="name" type="string" column="CANSM" length="100"/>
+		<property name="type" type="string" column="CANSLX" length="4"/>
+		<property name="value" type="string" column="PARAMETERVALUE" length="40"/>
+	</class>
+</hibernate-mapping>

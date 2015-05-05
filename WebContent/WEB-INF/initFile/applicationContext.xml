@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"     
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"     
+       xmlns:context="http://www.springframework.org/schema/context"            
+       xsi:schemaLocation="http://www.springframework.org/schema/beans     
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd     
+           http://www.springframework.org/schema/context    
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+	<!-- oralce-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.21.128:1521:vm11g" />
+		<property name="username" value="yanyin" />
+		<property name="password" value="yanyin" />
+		<property name="initialSize" value="100" />
+		<property name="maxWait" value="60000" />
+		<property name="maxIdle" value="50" />
+		<property name="minIdle" value="50" />
+		<property name="maxActive" value="1600" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="180" />
+	</bean>
+	<!-- was 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+                <property name="jndiName"><value>hxyanyin</value></property>
+                <property name="resourceRef"><value>true</value></property>
+        </bean>-->
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+			    <!--DB2方言
+				<prop key="hibernate.dialect">org.hibernate.dialect.DB2Dialect</prop>  
+			    -->
+				<!--ORACLE方言-->
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.pool_size">300</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.jdbc.batch_size">100</prop>
+			</props>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/com/unitop/sysmgr/bo</value>
+				<value>classpath:/com/unitop/sysmgr/bo/sys</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- no need set -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="baseTxProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+		<property name="transactionManager">
+			<ref local="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="create*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="merge*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- scan beans -->
+	<!--  <context:component-scan base-package="com.unitop.sysmgr.dao.impl,com.unitop.sysmgr.service.impl,com.unitop.sysmgr.action"/>-->
+	<context:component-scan base-package="*"/>
+</beans>

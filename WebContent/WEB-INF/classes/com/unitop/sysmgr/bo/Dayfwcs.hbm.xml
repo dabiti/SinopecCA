@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.unitop.sysmgr.bo.Dayfwcs" table="daycsb">
+  <id column="dayfwid" length="32" name="dayfwid" type="string">
+   <generator class="assigned"/>
+  </id>
+  <property column="dayfwmc" generated="never" lazy="false" length="70"
+   name="dayfwmc" type="string"/>
+  <property column="dayfwip" generated="never" lazy="false" length="20"
+   name="dayfwip" type="string"/>
+  <property column="dayfwport" generated="never" lazy="false"
+   length="10" name="dayfwport" type="string"/>
+  <property column="dayfwmac" generated="never" lazy="false"
+   length="100" name="dayfwmac" type="string"/>
+  <property column="dangqsl" generated="never" lazy="false" length="6"
+   name="dangqsl" type="integer"/>
+  <property column="zuidsl" generated="never" lazy="false" length="6"
+   name="zuidsl" type="integer"/>
+   <property column="bendname" generated="never" lazy="false" length="50"
+   name="bendname" type="string"/>
+ </class>
+</hibernate-mapping>

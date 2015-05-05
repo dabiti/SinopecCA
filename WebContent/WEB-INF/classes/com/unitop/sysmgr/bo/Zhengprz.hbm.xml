@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Zhengprz" table="credencechecklog">
+		<composite-id name="id" class="com.unitop.sysmgr.bo.ZhengprzId">
+            <key-property name="account" type="string">
+                <column name="zhangh" length="5" />
+            </key-property>
+            <key-property name="checknum" type="string">
+                <column name="checknum" length="20" />
+            </key-property>
+             <key-property name="money" type="string">
+                <column name="money" length="64" />
+            </key-property>
+             <key-property name="checkdate" type="string">
+                <column name="checkdate" length="10" />
+            </key-property>
+             <key-property name="checktime" type="string">
+                <column name="checktime" length="10" />
+            </key-property>
+        </composite-id>
+		<property name="idd" type="string" column="id" length="40" />
+		<property name="ip" type="string" column="ip" length="15" />
+		<property name="credencetype" type="string" column="credencetype" length="20" />
+		<property name="clerknum" type="string" column="clerknum" length="15" />
+		<property name="clerkname" type="string" column="clerkname" length="20" />
+		<property name="doublesignatureclerknum" type="string" column="doublesignatureclerknum" length="12" />
+		<property name="doublesignatureclerkname" type="string" column="doublesignatureclerkname" length="20" />
+		<property name="checkresult" type="string" column="checkresult" length="10" />
+		<property name="checkmode" type="string" column="checkmode" length="10" />
+		<property name="remark" type="string" column="remark" length="60" />
+		<property name="zuhgz" type="string" column="zuhgz" length="400" />
+		<property name="clerkorgcode" type="string" column="internalorganizationnumber" length="20" />
+		
+		<property name="chuprq" type="string" column="CHUPRQ" length="10" />
+		<property name="xitlx" type="string" column="XITLX" length="4" />
+		<property name="yanybs" type="string" column="YANYBS" length="4" />
+		<property name="pingzbsm" type="string" column="PINGZBSM" length="10" />
+	</class>
+</hibernate-mapping>

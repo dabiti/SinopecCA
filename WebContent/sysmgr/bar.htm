@@ -1,0 +1,33 @@
+<HTML><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<SCRIPT>
+	function Submit_onclick()
+        {
+           if(parent.mainFrame.cols=="217,8,*") 
+	   {
+	       parent.mainFrame.cols="0,8,*"
+ 	       document.getElementById("ImgArrow").src="../images/to-right.gif";
+	   }
+	   else
+	   {
+	       parent.mainFrame.cols="217,8,*"
+	       document.getElementById("ImgArrow").src="../images/to-left.gif";
+	   }
+        }
+		</SCRIPT>
+<META content="MSHTML 6.00.3790.2759" name=GENERATOR><style type="text/css">
+<!--
+body {
+	background-image: url(../images/bar_bg.gif);
+}
+-->
+</style></HEAD>
+<BODY leftMargin=0 topMargin=0>
+<TABLE id=Table1 height=600 cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD colSpan=2 height=24><A href="javascript:Submit_onclick()"><IMG 
+      id=ImgArrow height=76 src="../images/to-left.gif" width=8 border=0 
+      name=ImgArrow></A></TD>
+  </TR></TBODY></TABLE></BODY></HTML>
+

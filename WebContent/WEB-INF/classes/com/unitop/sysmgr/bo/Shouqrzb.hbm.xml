@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.Shouqrzb" table="SHOUQRZB">
+		<id name="id" type="string" column="ID" length="40">
+			<generator class="uuid.hex">
+			</generator>
+		</id>
+		<property name="account" type="string" column="ZHANGH" length="30" />
+		<property name="managedate" type="string" column="MANAGEDATE" length="10"/>
+		<property name="managetime" type="string" column="MANAGETIME" length="8" />
+		<property name="managetype" type="string" column="MANAGETYPE" length="10"/>
+		<property name="managecontent" type="string" column="MANAGECONTENT" length="8" />
+		<property name="operationclerk" type="string" column="OPERATIONCLERK" length="10"/>
+		<property name="authorizationclerk" type="string" column="AUTHORIZATIONCLERK" length="10"/>
+	</class>
+	</hibernate-mapping>

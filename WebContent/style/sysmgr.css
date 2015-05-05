@@ -1,0 +1,50 @@
+body{
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #F5FAFF;
+}
+body,td,th {
+	font-size: 12px;
+	color: #000000;
+}
+.left-title1 {
+	font-family: "宋体";
+	font-size: 15px;
+	font-weight: bold;
+	color: #16426F;
+}
+.main-line {
+	border-bottom: 1px dashed #000000;
+}
+.main-table-title {
+	font-family: "宋体";
+	font-size: 13px;
+	font-weight: normal;
+	color: #000000;
+}
+.page {
+	font-size: 15px;
+	color: #326CA6;
+	font-weight: bold;
+	font-family: "宋体";
+}
+.main-submit-title {
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	color: #2D547B;
+}
+text {
+	border: thin solid #D0E8FF;
+}
+.textarea {
+	background-color: #DAE9FA;
+	border: 1px dashed #DAE9FA;
+}
+.message-title {
+	font-size: 13px;
+	font-weight: bold;
+	color: #16426F;
+}

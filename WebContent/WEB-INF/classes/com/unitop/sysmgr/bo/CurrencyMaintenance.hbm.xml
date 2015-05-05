@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Huobb" table="HUOBB">
+		<id name="huobbh" type="string" column="HUOBBH" length="10">
+		<generator class="assigned">
+		</generator>
+		</id>
+		<property name="huobmc" type="string" column="HUOBMC" length="20"/>
+		<property name="beiz" type="string" column="BEIZ" length="100"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="gbk" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans> 
+		<form-bean name="loginForm" type="com.unitop.sysmgr.form.LoginForm" />
+		<form-bean name="checkerLoginForm" type="com.unitop.sysmgr.form.CheckerLoginForm" />
+		<form-bean name="orgForm" type="com.unitop.sysmgr.form.OrgForm" />
+		<form-bean name="exchangeForm" type="com.unitop.sysmgr.form.ExchangeForm" />
+		<form-bean name="clerkForm" type="com.unitop.sysmgr.form.ClerkForm" />
+		<form-bean name="passwordForm" type="com.unitop.sysmgr.form.PasswordForm" />
+		<form-bean name="accountinfoForm" type="com.unitop.sysmgr.form.AccountinfoForm" />
+		<form-bean name="accountnumForm" type="com.unitop.sysmgr.form.AccountnumForm" />
+		<form-bean name="sealchecklogForm" type="com.unitop.sysmgr.form.SealchecklogForm" />
+		<form-bean name="accountLogForm" type="com.unitop.sysmgr.form.AccountLogForm" />
+		<form-bean name="systemManageLogForm" type="com.unitop.sysmgr.form.SystemManageLogForm" />
+		
+		<form-bean name="authorizeLogForm" type="com.unitop.sysmgr.form.AuthorizeLogForm" />
+		
+		<form-bean name="VoucherForm" type="com.unitop.sysmgr.form.VoucherForm" />
+		<form-bean name="DayfwcsForm" type="com.unitop.sysmgr.form.DayfwcsForm" />
+		<form-bean name="AccountPRStatDetailForm"
+			type="com.unitop.sysmgr.form.AccountPRStatDetailForm" />
+		<form-bean name="SystemControlForm" type="com.unitop.sysmgr.form.SystemControlForm" />
+		<!--BS中石化对账系统二期改造 第二阶段 -->
+		<form-bean name="logTglForm" type="com.unitop.sysmgr.form.LogTglForm" />
+		<!--BS中石化对账系统 产品化 二〇一〇年九月十五日 -->
+		<form-bean name="BiaodyspzForm" type="com.unitop.sysmgr.form.BiaodyspzForm" />
+		<form-bean name="CustomForm" type="com.unitop.sysmgr.form.CustomForm" />
+		<form-bean name="PeizDPIForm" type="com.unitop.sysmgr.form.sys.PeizDPIForm" />
+		<form-bean name="XitjdForm" type="com.unitop.sysmgr.form.sys.XitjdForm" />
+		<form-bean name="YewxtForm" type="com.unitop.sysmgr.form.sys.YewxtForm" />
+		<form-bean name="JiedcsForm" type="com.unitop.sysmgr.form.sys.JiedcsForm" />
+		<form-bean name="PingzcsForm" type="com.unitop.sysmgr.form.sys.PingzcsForm" />
+		<form-bean name="XitcsForm" type="com.unitop.sysmgr.form.sys.XitcsForm" />
+
+		<form-bean name="MenuForm" type="com.unitop.sysmgr.form.MenuForm" />
+		<form-bean name="DanbwhForm" type="com.unitop.sysmgr.form.DanbwhForm" />
+		<form-bean name="DanbwhBiaodForm" type="com.unitop.sysmgr.form.DanbwhBiaodForm" />
+		<form-bean name="YewgzForm" type="com.unitop.sysmgr.form.YewgzForm" />
+		<form-bean name="TisxxForm" type="com.unitop.sysmgr.form.TisxxForm" />
+		<form-bean name="RoleForm" type="com.unitop.sysmgr.form.RoleForm" />
+		<form-bean name="PingzForm" type="com.unitop.sysmgr.form.PingzForm" />
+		<!-- v3.0 -->
+		<form-bean name="KagForm" type="com.unitop.sysmgr.form.KagForm" />
+		<form-bean name="KagRenwForm" type="com.unitop.sysmgr.form.KagRenwForm" />
+		<form-bean name="YinjkForm" type="com.unitop.sysmgr.form.YinjkForm" />
+		<form-bean name="ZhongkpzForm" type="com.unitop.sysmgr.form.ZhongkpzForm" />
+		<form-bean name="ZhuczhgxForm" type="com.unitop.sysmgr.form.ZhuczhgxForm" />
+		<form-bean name="DanbwhgxbForm" type="com.unitop.sysmgr.form.DanbwhgxbForm" />
+		<form-bean name="YinjForm" type="com.unitop.sysmgr.form.YinjForm" />
+		<form-bean name="batchSealCheckForm" type="com.unitop.sysmgr.form.BatchSealCheckForm" />
+	</form-beans>
+	<action-mappings>
+		<action path="/forwordsealchecklog" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/sealchecklog.jsp" name="sealchecklogForm" />
+		<action path="/forwordbatchsealchecklog" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/batchsealchecklog.jsp" name="sealchecklogForm" />
+		<action path="/forwordvoucherchecklog" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/voucherchecklog.jsp" name="sealchecklogForm" />
+		<action path="/forwordmanagelog" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/managelog.jsp" name="systemManageLogForm" />
+		<action path="/forwordauthorizelog" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/shouqrzb.jsp" name="authorizeLogForm"  validate="true" />
+		<action path="/forwordaccountlog" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/accountlog.jsp" name="accountLogForm" />
+		<action path="/forwordchangepwd" type="org.apache.struts.actions.ForwardAction"
+			parameter="/changepassword.jsp" name="passwordForm" />
+			
+	
+		<action path="/sealchecklog" type="org.springframework.web.struts.DelegatingActionProxy"
+			name="sealchecklogForm" input="/main/sealchecklog.jsp">
+			<forward name="success" path="/main/sealchecklog.jsp" />
+			<forward name="sealchecklog" path="/main/sealchecklog.jsp" />
+		</action>
+		<action path="/login"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm"
+			parameter="method" input="/login.jsp">
+			<forward name="login.success" path="/index.jsp" />
+			<forward name="login.error" path="/login.jsp" />
+			<forward name="changepwd.success" path="/changepassword.jsp" />
+			<forward name="forcedtosign.error" path="/forcedtosign.jsp" />
+			<forward name="login.kaih" path="/main/net/createAccount.jsp" />
+		</action>
+		<action path="/exchange"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="exchangeForm"
+			parameter="method" input="/main/exchange_list.jsp">
+			<forward name="exchange.list" path="/main/exchange_list.jsp" />
+		</action>
+		<action path="/logout"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm">
+			<forward name="logout.ok" path="/login.jsp?logoutok=logoutok" />
+		</action>
+
+		<action path="/changepwd" type="org.springframework.web.struts.DelegatingActionProxy" name="passwordForm" input="/changepassword.jsp">
+			<forward name="homepage" path="/index.jsp" />
+			<forward name="changepwd.error" path="/changepassword.jsp" />
+			<forward name="changepwd.sucess" path="/login.jsp" />
+		</action>
+		<action path="/accountinfo"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="accountinfoForm"
+			parameter="method">
+			<forward name="login.success" path="/main/accountupdate.jsp" />
+			<forward name="accountinfo.view" path="/main/accountinfo_briefnessa.jsp" />
+			<forward name="accountinfo.update" path="/main/accountupdate.jsp" />
+			<forward name="accountinfo.logout" path="/main/account_resume.jsp" />
+			<forward name="accountinfo.physicsdelete" path="/main/physicsdelete.jsp" />
+			<forward name="accountinfo.browseparticular" path="/main/browseparticular.jsp" />
+			<forward name="accountinfo.verify" path="/main/checkerLogin.jsp" />
+			<forward name="accountinfo.net.scan.success" path="/main/net/zhanghgjmxcx.jsp" />
+			<forward name="accountinfo.net.view.success" path="/main/net/zhanghjdcx.jsp" />
+			<forward name="accountinfo.xiaohu" path="/main/net/account_xiaohu.jsp" />
+			<forward name="accountinfo.net.resume.success" path="/main/net/account_resume.jsp" />
+			<forward name="accountinfo.net.physicsdelete.success" path="/main/net/physicsdelete.jsp" />
+			<forward name="accountinfo.net.zhanghjd.success" path="/main/net/zhanghjd.jsp" />
+			<forward name="accountinfo.net.zhanghjg.success" path="/main/net/zhanghjg.jsp" />
+			<forward name="accountinfo.image" path="/main/image/accountinfo_image.jsp" />
+			<forward name="accountinfo.bill" path="/main/image/bill_image.jsp" />
+			
+			<forward name="accountinfo.net.zhanghdj.success" path="/main/net/zhanghdj.jsp" />
+			<forward name="accountinfo.net.zhanghgs.success" path="/main/net/zhanghgs.jsp" />
+			
+			<!-- 131230增加 -->
+			<forward name="accountinfo.net.zhanghkh.success" path="/main/net/createAccount.jsp" />
+			
+			<forward name="accountinfo.net.accountAllexchange.success" path="/main/net/accountAllexchange.jsp" />
+			<forward name="accountinfo.net.addAllexchange.success" path="/main/net/addAllexchange.jsp" />
+			
+			
+			<forward name="yinjkshare.success" path="/main/queryyinjkshare.jsp" />
+			<forward name="accountinfo.yinj.image" path="/main/image/yinj_image.jsp" />
+			<forward name="zhangh_list_todo" path="/main/net/zhangh_list_todo.jsp" />
+			<forward name="yinjkshare.view" path="/main/queryyinjkshare.jsp" />
+			
+			<!-- 20140605增加账户转久悬；久悬转有效 -->
+			<forward name="accountinfo.jiuxuan" path="/main/net/account_jiuxuan.jsp" />
+			<forward name="accountinfo.normal" path="/main/net/account_jiuxuanresume.jsp" />
+			<!-- 20140618增加久悬转账销案存 -->
+			<forward name="accountinfo.zhangxac" path="/main/net/Zhangxac.jsp" />
+			<!-- 20140619增加非核心账户开户与资料修改 -->
+			<forward name="accountinfo.net.inner.zhanghkh.success" path="/main/net/innerCreateAccount.jsp" />
+			<!-- 20140925增加导入账户信息excel文件 -->
+			<forward name="uploadaccountinfo_excel" path="/main/upload/uploadAccountinfo.jsp" />
+			<forward name="uploadOldaccountinfo_excel" path="/main/upload/uploadOldAccountTable.jsp" />
+			
+			<!-- 20140926增加快速建库 -->
+			<forward name="fastcreateaccount" path="/main/net/tongbAccountinfo.jsp" />
+			
+			
+			
+		</action>
+		<action path="/accountnum"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="accountnumForm"
+			parameter="method">
+			<forward name="accountnum.show" path="/main/account_num.jsp" />
+			<forward name="accountnum.show.net" path="/main/account_numForNet.jsp" />
+		</action>
+		<action path="/voucherchecklog"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="sealchecklogForm"
+			input="/main/voucherchecklog.jsp">
+			<forward name="success" path="/main/voucherchecklog.jsp" />
+		</action>
+		<action path="/sealcheck"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="sealchecklogForm"
+			input="/main/voucherchecklog.jsp">
+			<forward name="success" path="/main/voucherchecklog.jsp" />
+		</action>
+		<action path="/batchsealchecklog"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="sealchecklogForm"
+			input="/main/batchsealchecklog.jsp">
+			<forward name="success" path="/main/batchsealchecklog.jsp" />
+		</action>
+		<action path="/accountlog"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="accountLogForm"
+			parameter="method" input="/main/accountlog.jsp">
+			<forward name="success" path="/main/accountlog.jsp" />
+			<forward name="enter" path="/main/accountlog.jsp" />
+			<forward name="error" path="/main/accountlog.jsp" />
+			<forward name="accountimp" path="/main/import.jsp" />
+			<forward name="accountlog" path="/main/accountlog.jsp" />
+			<!-- 20140703增加账户同步日志查询 -->
+			<forward name="accountlog.zhanghtb" path="/main/zhanghtbrz.jsp" />
+		</action>
+		<action path="/managelog"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="systemManageLogForm"
+			input="/main/managelog.jsp">
+			<forward name="success" path="/main/managelog.jsp" />
+			<forward name="error" path="/main/managelog.jsp" />
+		</action>
+		
+		<action path="/authorizelog"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="authorizeLogForm"
+			input="/main/shouqrzb.jsp">
+			<forward name="success" path="/main/shouqrzb.jsp" />
+			<forward name="error" path="/main/shouqrzb.jsp" />
+		</action>
+
+		<action path="/sealcheckcustom"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="sealchecklogForm"
+			input="/main/sealcheckcustom_add.jsp" parameter="method">
+			<forward name="list" path="/main/sealcheckcustom_list.jsp" />
+			<forward name="save.ok" path="/sealcheckcustom.do?method=list" />
+			<forward name="delete.ok" path="/sealcheckcustom.do?method=list" />
+			<forward name="add" path="/main/sealcheckcustom_add.jsp" />
+			<forward name="download" path="/main/sealcheckcustom_add.jsp" />
+			<forward name="download.error" path="/main/downloadreturn.jsp" />
+		</action>
+		<action path="/accountcustom"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="accountinfoForm"
+			input="/main/accountinfocustom_add.jsp" parameter="method">
+			<forward name="list" path="/main/accountinfocustom_list.jsp" />
+			<forward name="save.ok" path="/accountcustom.do?method=list" />
+			<forward name="delete.ok" path="/accountcustom.do?method=list" />
+			<forward name="add" path="/main/accountinfocustom_add.jsp" />
+			<forward name="download" path="/main/accountinfocustom_add.jsp" />
+			<forward name="download.error" path="/main/downloadreturn.jsp" />
+		</action>
+		<action path="/clearClerkIP"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method">
+			<forward name="login" path="/main/clearClerkIP.jsp" />
+			<forward name="clerkOrgclerkIP" path="/main/clerkOrgClerkIP.jsp">
+			</forward>
+		</action>
+		<!-- 整合后 -->
+		<action path="/voucherManage"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="VoucherForm"
+			parameter="method">
+			<forward name="list" path="/main/voucher_list.jsp" />
+			<forward name="add.list" path="/voucherManage.do?method=load" />
+			<forward name="add" path="/main/voucher_add.jsp" />
+			<forward name="modify" path="/main/voucher_modify.jsp" />
+			<forward name="load" path="/voucherManage.do?method=load" />
+			<forward name="error" path="/main/voucher_add.jsp" />
+			<forward name="set" path="/main/voucher_yewset.jsp" />
+		</action>
+		<action path="/clerkManage"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="clerkForm"
+			parameter="method">
+			<forward name="orgtree.success" path="/main/clerk_org_tree.jsp" />
+			<forward name="list.success" path="/main/clerk_list.jsp" />
+			<forward name="forward.create" path="/main/clerk_add.jsp" />
+			<forward name="forward.update" path="/main/clerk_modify.jsp" />
+			<forward name="create.input" path="/main/clerk_add.jsp" />
+			<forward name="load" path="/clerkManage.do?method=load" />
+			<forward name="update.error" path="/main/clerk_modify.jsp" />
+		</action>
+		<action path="/orgManage"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="orgForm"
+			parameter="method">
+			<forward name="manage.success" path="/main/org_manager.jsp" />
+			<forward name="list.success" path="/main/org_list.jsp" />
+			<forward name="add.success" path="/main/org_add.jsp" />
+			<forward name="load" path="/orgManage.do?method=load" />
+			<forward name="updateforward.success" path="/main/org_modify.jsp" />
+			<forward name="changerelation.success" path="/main/org_changerelation.jsp" />
+			<forward name="merge.success" path="/main/mergeorg.jsp" />
+			<forward name="merge.error" path="/orgManage.do?method=forwardmerge" />
+			<forward name="change.error" path="/main/org_changerelation.jsp" />
+			<forward name="update.error" path="/main/org_modify.jsp" />
+			<forward name="zhipyx" path="/main/zhipyxtbsz.jsp" />
+			<forward name="modiZhipyxxx" path="/main/updateZhipyxxx.jsp" />
+			<forward name="AsynSealCheckConfig" path="/main/asynSealCheckConfig.jsp" />
+			<forward name="modiAsynSealCheckConfig" path="/main/updateAsynSealCheckConfig.jsp" />
+			<forward name="CacheConfig" path="/main/cacheConfig.jsp" />
+			<forward name="modiCacheConfig" path="/main/updateCacheConfig.jsp" />
+		</action>
+		<action path="/systemControlParameter"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="SystemControlForm"
+			parameter="method">
+			<forward name="showParameters" path="/main/systemControlParameter_list.jsp" />
+			<forward name="addParameters" path="/systemControlParameter.do?method=select" />
+			<forward name="findParameters" path="/main/systemControlParameter_update.jsp" />
+			<forward name="deleteParameters" path="/systemControlParameter.do?method=select" />
+			<forward name="updateParameters" path="/systemControlParameter.do?method=select" />
+			<forward name="doParameters" path="/main/systemControlParameter_add.jsp" />
+		</action>
+		<!--BS中石化对账系统二期改造 第二阶段 -->
+		<action path="/orgVoucher"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="logTglForm" input="/main/orgVoucherLog.jsp">
+			<forward name="list" path="/main/orgVoucherLog.jsp" />
+			<forward name="success" path="/main/orgVoucherLog.jsp" />
+		</action>
+		<!--BS中石化对账系统产品化  -->
+		<action path="/ureportMgr"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="CustomForm" input="/sysmgr/r_list.jsp">
+			<forward name="listUreport" path="/sysmgr/r_list.jsp" />
+			<forward name="addUreport" path="/sysmgr/r_add.jsp" />
+			<forward name="deleteUreport" path="/sysmgr/r_list.jsp" />
+			<forward name="updateUreport" path="/sysmgr/r_update.jsp" />
+		</action>
+		<action path="/r_formMgr"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="CustomForm" input="/sysmgr/r_form_list.jsp">
+			<forward name="listForm" path="/sysmgr/r_form_list.jsp" />
+			<forward name="addForm" path="/sysmgr/r_form_add.jsp" />
+			<forward name="deleteForm" path="/sysmgr/r_form_list.jsp" />
+			<forward name="updateForm" path="/sysmgr/r_form_update.jsp" />
+		</action>
+		<action path="/r_resultMgr"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="CustomForm"
+			parameter="method" input="/sysmgr/r_result_list.jsp">
+			<forward name="list" path="/sysmgr/r_result_list.jsp" />
+			<forward name="add" path="/sysmgr/r_result_add.jsp" />
+			<forward name="delete" path="/sysmgr/r_result_list.jsp" />
+			<forward name="update" path="/sysmgr/r_result_update.jsp" />
+		</action>
+		<action path="/dictionaryMgr"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="CustomForm" input="/sysmgr/r_Dictionary_list.jsp">
+			<forward name="listDictionary" path="/sysmgr/r_dictionary_list.jsp" />
+			<forward name="addDictionary" path="/sysmgr/r_dictionary_add.jsp" />
+			<forward name="deleteDictionary" path="/sysmgr/r_dictionary_delete.jsp" />
+			<forward name="updateDictionary" path="/sysmgr/r_dictionary_update.jsp" />
+		</action>
+		<action path="/reportService"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" input="/sysmgr/ureportList.jsp" name="CustomForm">
+			<forward name="report" path="/sysmgr/ureportService.jsp" />
+			<forward name="list" path="/sysmgr/ureportList.jsp" />
+		</action>
+		<!-- 凭证参数设置 上传文件 -->
+		<action path="/uploadImage"
+			type="org.springframework.web.struts.DelegatingActionProxy" input="/main/voucher.jsp"
+			parameter="method" name="VoucherForm" validate="true">
+			<forward name="success" path="/main/voucher.jsp" />
+			<forward name="error" path="/main/voucher.jsp" />
+		</action>
+
+		<!-- 帐号信息全展示功能-->
+		<action path="/autocomplete"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="CustomForm" input="/sysmgr/batch_list.jsp" />
+		<!-- DB操作平台-->
+		<action path="/operDB"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="CustomForm" input="/sysmgr/operDB.jsp">
+			<forward name="list" path="/sysmgr/operDB.jsp" />
+		</action>
+		
+		<!-- 外围参数管理 -->
+		<action path = "/peizDPI"
+			type = "org.springframework.web.struts.DelegatingActionProxy"
+			name = "PeizDPIForm" parameter = "method">
+		
+			<forward name="showDPI"
+				path="/sysmgr/sys/DPI_list.jsp" />
+			<forward name="addDPI"
+				path="/peizDPI.do?method=select" />
+			<forward name="findDPI"
+				path="/sysmgr/sys/DPI_update.jsp" />
+			<forward name="deleteDPI"
+				path="/peizDPI.do?method=select" />
+			<forward name="updateDPI"
+				path="/peizDPI.do?method=select" />
+			<forward name="doDPI"
+				path="/sysmgr/sys/DPI_add.jsp" />
+		</action>
+		<action path = "/xitjd"
+			type = "org.springframework.web.struts.DelegatingActionProxy"
+			name = "XitjdForm" parameter = "method">
+		
+			<forward name="showXitjd"
+				path="/sysmgr/sys/xitjd_list.jsp" />
+			<forward name="addXitjd"
+				path="/xitjd.do?method=select" />
+			<forward name="findXitjd"
+				path="/sysmgr/sys/xitjd_update.jsp" />
+			<forward name="deleteXitjd"
+				path="/xitjd.do?method=select" />
+			<forward name="updateXitjd"
+				path="/xitjd.do?method=select" />
+			<forward name="doXitjd"
+				path="/sysmgr/sys/xitjd_add.jsp" />
+		</action>
+		<action path = "/yewxt"
+			type = "org.springframework.web.struts.DelegatingActionProxy"
+			name = "YewxtForm" parameter = "method">
+		
+			<forward name="showyewxt"
+				path="/sysmgr/sys/yewxt_list.jsp" />
+			<forward name="addyewxt"
+				path="/yewxt.do?method=select" />
+			<forward name="findyewxt"
+				path="/sysmgr/sys/yewxt_update.jsp" />
+			<forward name="deleteyewxt"
+				path="/yewxt.do?method=select" />
+			<forward name="updateyewxt"
+				path="/yewxt.do?method=select" />
+			<forward name="doyewxt"
+				path="/sysmgr/sys/yewxt_add.jsp" />
+		</action>
+		<action path = "/jiedcs"
+			type = "org.springframework.web.struts.DelegatingActionProxy"
+			name = "JiedcsForm" parameter = "method">
+		
+			<forward name="showjiedcs"
+				path="/sysmgr/sys/jiedcs_list.jsp" />
+			<forward name="addjiedcs"
+				path="/jiedcs.do?method=select" />
+			<forward name="findjiedcs"
+				path="/sysmgr/sys/jiedcs_update.jsp" />
+			<forward name="deletejiedcs"
+				path="/jiedcs.do?method=select" />
+			<forward name="updatejiedcs"
+				path="/jiedcs.do?method=select" />
+			<forward name="dojiedcs"
+				path="/sysmgr/sys/jiedcs_add.jsp" />
+		</action>
+		<action path = "/pingzcs"
+			type = "org.springframework.web.struts.DelegatingActionProxy"
+			name = "PingzcsForm" parameter = "method">
+		
+			<forward name="showpingzcs"
+				path="/sysmgr/sys/pingzcs_list.jsp" />
+			<forward name="addpingzcs"
+				path="/pingzcs.do?method=select" />
+			<forward name="findpingzcs"
+				path="/sysmgr/sys/pingzcs_update.jsp" />
+			<forward name="deletepingzcs"
+				path="/pingzcs.do?method=select" />
+			<forward name="updatepingzcs"
+				path="/pingzcs.do?method=select" />
+			<forward name="dopingzcs"
+				path="/sysmgr/sys/pingzcs_add.jsp" />
+		</action>
+		<action path = "/xitcs"
+			type = "org.springframework.web.struts.DelegatingActionProxy"
+			name = "XitcsForm" parameter = "method">	
+			<forward name="showxitcs"
+				path="/sysmgr/sys/xitcs_list.jsp" />
+			<forward name="addxitcs"
+				path="/xitcs.do?method=select" />
+			<forward name="findxitcs"
+				path="/sysmgr/sys/xitcs_update.jsp" />
+			<forward name="deletexitcs"
+				path="/xitcs.do?method=select" />
+			<forward name="updatexitcs"
+				path="/xitcs.do?method=select" />
+			<forward name="doxitcs"
+				path="/sysmgr/sys/xitcs_add.jsp" />
+		</action>
+		
+		<!-- 单表维护 -->
+		<action path="/doDanbwh"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method">
+			<forward name="add" path="/main/danbwh/danbwh_add.jsp" />
+			<forward name="update" path="/main/danbwh/danbwh_update.jsp" />
+			<forward name="list" path="/main/danbwh/danbwh_list.jsp" />
+		</action>
+		<!-- 业务规则 -->
+		<action path="/yewgzConfig"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="YewgzForm">
+			<forward name="add" path="/sysmgr/yewgz_add.jsp" />
+			<forward name="load" path="/yewgzConfig.do?method=list" />
+			<forward name="list" path="/sysmgr/yewgz_list.jsp" />
+			<forward name="modify" path="/sysmgr/yewgz_update.jsp" />
+			<forward name="yewgzlist" path="/sysmgr/yewgz_otherlist.jsp" />
+		</action>
+		<!-- 提示信息定制-->
+		<action path="/tisxxConfig"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="TisxxForm">
+			<forward name="add" path="/sysmgr/tisxx_add.jsp" />
+			<forward name="load" path="/tisxxConfig.do?method=list" />
+			<forward name="list" path="/sysmgr/tisxx_list.jsp" />
+			<forward name="modify" path="/sysmgr/tisxx_update.jsp" />
+		</action>
+		<!-- 中石化对账系统系统 -菜单定制-->
+		<action path="/doMenu"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method" name="MenuForm" input="/sysmgr/cdldz.jsp">
+			<forward name="doshow" path="/menu.jsp" />
+			<forward name="list" path="/sysmgr/cdldz_list.jsp" />
+			<forward name="create" path="/sysmgr/cdldzTable.jsp" />
+			<forward name="find" path="/sysmgr/cdldz_update.jsp" />
+			<forward name="do" path="/sysmgr/cdldz_add.jsp" />
+			<forward name="manage.success" path="/sysmgr/cdldz_manager.jsp" />
+			<forward name="load" path="/doMenu.do?method=load" />
+			<forward name="add" path="/sysmgr/menu_add.jsp" />
+			
+		</action>
+		<action path="/danbwh"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="DanbwhForm"
+			parameter="method">
+			<forward name="showdanbwh" path="/sysmgr/danbwh_list.jsp" />
+			<forward name="adddanbwh" path="/danbwh.do?method=list" />
+			<forward name="finddanbwh" path="/sysmgr/danbwh_update.jsp" />
+			<forward name="deletedanbwh" path="/danbwh.do?method=list" />
+			<forward name="updatedanbwh" path="/danbwh.do?method=list" />
+			<forward name="dodanbwh" path="/sysmgr/danbwh_add.jsp" />
+		</action>
+		<action path="/danbwhbd"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="DanbwhBiaodForm"
+			parameter="method">
+			<forward name="show" path="/sysmgr/danbwh_biaodlist.jsp" />
+			<forward name="add" path="/danbwhbd.do?method=list" />
+			<forward name="find" path="/sysmgr/danbwh_biaoupdate.jsp" />
+			<forward name="delete" path="/danbwhbd.do?method=list" />
+			<forward name="update" path="/danbwhbd.do?method=list" />
+			<forward name="do" path="/sysmgr/danbwh_biaodadd.jsp" />
+		</action>
+		<action path="/syslogin"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm"
+			parameter="method" input="/systemlogin.jsp">
+			<forward name="syslogin.success" path="/sysmgr/systemindex.jsp" />
+			<forward name="syslogin.error" path="/systemlogin.jsp" />
+		</action>
+		<action path="/ajax"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm"
+			parameter="method">
+		</action>
+		<action path="/basicFunction"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="method">
+			<forward name="info" path="/info.jsp" />
+		</action>
+<!-- v2.5 -->
+		<action path="/roleManager" type="org.springframework.web.struts.DelegatingActionProxy" name="RoleForm" parameter="method">
+			<forward name="add" path="/main/role_add.jsp" />
+			<forward name="load" path="/roleManager.do?method=list" />
+			<forward name="list" path="/main/role_list.jsp" />
+			<forward name="modify" path="/main/role_update.jsp" />
+		</action>
+		
+<!-- v2.5.1票据二维码 -->
+		<action path="/pingz" type="org.springframework.web.struts.DelegatingActionProxy" name="PingzForm" parameter="method">
+			<forward name="pingzcs" path="/main/pingz/pingzcs.jsp" />
+			<forward name="mingxcxdy" path="/main/pingz/mingxcxdy.jsp" />
+			<forward name="toUpdate" path="/main/pingz/pingzcs_modify.jsp" />
+			<forward name="huizpzmx" path="/main/pingz/huizpzmx.jsp" />
+			<forward name="pingzmxrz" path="/main/pingz/pingzmxrz.jsp" />
+		</action>
+<!--v2.6.1 打印服务维护 -->
+		<action path="/dayfw" type="org.springframework.web.struts.DelegatingActionProxy" name="DayfwcsForm" parameter="method">
+			<forward name="list" path="/main/dayfw/dayfw_list.jsp" />
+			<forward name="modify" path="/main/dayfw/dayfw_modify.jsp" />
+			<forward name="load" path="/dayfw.do?method=list" />
+		</action>
+<!-- V3.0 -->
+
+		<action path="/kag" type="org.springframework.web.struts.DelegatingActionProxy" name="KagForm" parameter="method">
+			<forward name="kag_list" path="/main/kag/kag_list.jsp" />
+			<forward name="kag_add" path="/main/kag/kag_add.jsp" />
+			<forward name="load" path="/kag.do?method=kaglist" />
+			<forward name="kagorglist" path="/main/kag/kagorg_list.jsp"/>
+			<forward name="kagspace" path="/main/kag/kag_space.jsp"/>
+			<forward name="toputandgetcard" path="/main/kag/kagrenw.jsp"/>
+		</action>
+		<action path="/handleKagRenw" type="org.springframework.web.struts.DelegatingActionProxy" name="KagRenwForm" parameter="method">
+			<forward name="toGetActLog" path="/main/kag/yinjkActLog.jsp"/>
+			<forward name="toputandgetcard" path="/main/kag/kagrenw.jsp"/>
+		</action>
+		<action path="/yinjkOperate" type="org.springframework.web.struts.DelegatingActionProxy" name="YinjkForm" parameter="method">
+			<forward name="toApply" path="/main/kag/search_returnapp.jsp"/>
+			<forward name="yinjknum.show.net" path="/main/yinjk/yinjk_numForNet.jsp" />
+			
+			<forward name="yinjkFenhrk" path="/main/yinjk/yinjkFenhrk.jsp" />
+			<forward name="yinjkJigck" path="/main/yinjk/yinjkJigck.jsp" />
+			<forward name="yinjkJigrk" path="/main/yinjk/yinjkJigrk.jsp" />
+			<forward name="yinjkGuiyly" path="/main/yinjk/yinjkGuiyly.jsp" />
+			<forward name="yinjkGuiysj" path="/main/yinjk/yinjkGuiysj.jsp" />
+			<forward name="yinjkGuiytj" path="/main/yinjk/yinjkGuiytj.jsp" />
+			<forward name="yinjkZuof" path="/main/yinjk/yinjkZuof.jsp" />
+			<forward name="yinjkYff" path="/main/yinjk/yinjkYff.jsp" />
+			<forward name="yinjkff" path="/main/yinjk/yinjkff.jsp" />
+			<forward name="internalRelease" path="/main/yinjk/internalRelease.jsp" />
+			<forward name="destroy" path="/main/yinjk/destroy.jsp" />
+			<forward name="readydestroy" path="/main/yinjk/readydestroy.jsp" />
+			<forward name="yinjkYulcx" path="/main/yinjk/yinjkYulcx.jsp" />
+			
+		</action>
+		<!-- v3.0重控凭证管理 -->
+		<action path="/zhongkpz" type="org.springframework.web.struts.DelegatingActionProxy" name="ZhongkpzForm" parameter="method">
+			<forward name="pingzrk" path="/main/zhongkpz/pingzrk.jsp" />
+			<forward name="pingzly" path="/main/zhongkpz/pingzly.jsp" />
+			<forward name="pingzth" path="/main/zhongkpz/pingzth.jsp" />
+			<forward name="pingzzf" path="/main/zhongkpz/pingzzf.jsp" />
+			<forward name="pingzsc" path="/main/zhongkpz/shancrk.jsp" />
+		</action>
+		<!-- v3.0维护主从账户关系 -->
+		<action path="/zhuczh" type="org.springframework.web.struts.DelegatingActionProxy" name="ZhuczhgxForm" parameter="method">
+			<forward name="zhuczhgx" path="/main/zhuczhgx/zhuczhgx.jsp" />
+			<forward name="xinjgx" path="/main/zhuczhgx/zhuczhgxadd.jsp" />
+		</action>
+		<!-- v3.0维护单表关系表关系 -->
+		<action path="/danbwhGuanxb" type="org.springframework.web.struts.DelegatingActionProxy" name="DanbwhgxbForm" parameter="method">
+			<forward name="danbwh_guanxblist" path="/sysmgr/danbwh_guanxblist.jsp" />
+			<forward name="danbwh_guanxbadd" path="/sysmgr/danbwh_guanxbadd.jsp" />
+			<forward name="danbwh_guanxbupdate" path="/sysmgr/danbwh_guanxbupdate.jsp" />
+		</action>
+		<!-- 印鉴管理 -->
+		<action path="/yinjManage" type="org.springframework.web.struts.DelegatingActionProxy" name="yinjForm" parameter="method">
+			<forward name="qiantyy" path="/main/yinj/qiantyy.jsp" />
+			<forward name="yinjsh" path="/main/yinj/yinjsh.jsp" />
+			<forward name="yinjgl" path="/main/yinj/yinjgl.jsp" />
+			<forward name="pingzgz" path="/main/pingz/pingzyysz.jsp" />
+			<forward name="modiPingzyygz" path="/main/pingz/updatePingzyygz.jsp" />
+			<forward name="toAddPingzxx"  path="/main/pingz/addPingzxx.jsp" />
+			<forward name="jzyinjgl" path="/main/yinj/jzyinjgl.jsp" />
+			<forward name="jzyinjsh" path="/main/yinj/jzyinjsh.jsp" />
+			
+		</action>
+		
+		<action path="/forqiantyy" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/yinj/qiantyy.jsp" name="yinjForm" />
+		<action path="/foryinjgl" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/yinj/yinjgl.jsp" name="yinjForm" />
+		<action path="/foryinjsh" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/yinj/yinjsh.jsp" name="yinjForm" />
+		<action path="/forqueryyinjkshare" type="org.apache.struts.actions.ForwardAction"
+			parameter="/main/queryyinjkshare.jsp" name="sealchecklogForm" />
+		<action path="/tongb"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="accountinfoForm"
+			parameter="method">
+			<forward name="accountinfo.net.view.success" path="/main/tongb/tongbbyhand.jsp" />
+			<forward name="bizview" path="/main/tongb/bizview.jsp" />
+			<forward name="modiTaskConfig" path="/main/tongb/updateNightTask.jsp" />
+		</action>
+		<action path="/batchsealcheck"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="batchSealCheckForm"
+			parameter="method">
+			<forward name="success" path="" />
+		</action>
+	</action-mappings>
+	<message-resources parameter="MessageResources" />
+</struts-config> 
+
