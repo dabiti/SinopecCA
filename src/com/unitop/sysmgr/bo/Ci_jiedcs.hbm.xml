@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.sys.Ci_jiedcs" table="ci_jiedcs">
+		<composite-id name="unionJiedcs" class="com.unitop.sysmgr.bo.sys.UnionJiedcs"> 
+            <key-property name="jiedbs" type="string" column="jiedbs" length="6"/>
+            <key-property name="cansbs" type="string" column="cansbs" length="10"/>
+        </composite-id>
+        <property name="cansmc" type="string" column="cansmc" length="200"/>
+		<property name="canslx" type="string" column="canslx" length="4"/>
+		<property name="cansfl" type="string" column="cansfl" length="10"/>
+		<property name="cansz" type="string" column="cansz" length="40"/>
+		<property name="canssm" type="string" column="canssm" length="500"/>
+	</class>
+</hibernate-mapping>

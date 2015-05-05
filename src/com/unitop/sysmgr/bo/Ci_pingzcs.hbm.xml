@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.sys.Ci_pingzcs" table="ci_pingzcs">
+		<composite-id name="unionPingzcs" class="com.unitop.sysmgr.bo.sys.UnionPingzcs"> 
+            <key-property name="xitbs" type="string" column="xitbs" length="5"/>
+            <key-property name="pingzbs" type="string" column="pingzbs" length="5"/>
+        </composite-id>
+        <property name="pingzmc" type="string" column="pingzmc" length="100"/>
+		<property name="zhaozq" type="string" column="zhaozq" length="19"/>
+		<property name="fazq" type="string" column="fazq" length="19"/>
+		<property name="yanyjb" type="integer" column="yanyjb" />
+		<property name="xfenbl" type="integer" column="xfenbl" />
+		<property name="yfenbl" type="integer" column="yfenbl" />
+		<property name="xsuof" type="integer" column="xsuof" />
+		<property name="ysuof" type="integer" column="ysuof" />
+	</class>
+</hibernate-mapping>

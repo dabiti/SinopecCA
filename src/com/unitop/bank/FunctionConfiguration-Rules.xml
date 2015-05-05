@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+
+<!-- these are the digester rules used to instantiate and configure
+     an org.andromda.core.mapping.Mappings instance using Apache's Digester -->
+<digester-rules>
+
+    <pattern value="functions">
+
+        <object-create-rule
+              classname="com.unitop.bank.FunctionConfiguration" />
+
+         <pattern value="function">
+
+            <object-create-rule
+                classname="com.unitop.bean.Function" />
+
+            <pattern value="id">
+
+                <call-method-rule
+                    methodname="setId"
+                    paramcount="1"/>
+
+                <call-param-rule
+                    paramnumber="0"/>
+
+            </pattern>
+
+            <pattern value="sql">
+
+                <call-method-rule
+                    methodname="setSql"
+                    paramcount="1"/>
+
+                <call-param-rule
+                    paramnumber="0"/>
+
+            </pattern>
+            
+            <pattern value="remark">
+
+                <call-method-rule
+                    methodname="setRemark"
+                    paramcount="1"/>
+
+                <call-param-rule
+                    paramnumber="0"/>
+
+            </pattern>
+             <pattern value="multi">
+ 		
+            <object-create-rule
+                classname="com.unitop.bean.MultiTrans" />
+              <set-next-rule methodname="setMutil" paramtype="com.unitop.bank.MultiTrans" />
+              
+                <pattern value="childid">
+	
+	                <call-method-rule
+	                    methodname="addToList"
+	                    paramcount="1"/>
+	
+	                <call-param-rule
+	                    paramnumber="0"/>
+	
+	            </pattern>
+				<!-- bean-property-setter-rule pattern="transid1" />
+            	<bean-property-setter-rule pattern="transid2" />
+                <bean-property-setter-rule pattern="transid3" /> -->
+                
+	            <!--pattern value="transid1">
+	
+	                <call-method-rule
+	                    methodname="setTransid1"
+	                    paramcount="1"/>
+	
+	                <call-param-rule
+	                    paramnumber="0"/>
+	
+	            </pattern>
+	            <pattern value="transid2">
+	
+	                <call-method-rule
+	                    methodname="setTransid2"
+	                    paramcount="1"/>
+	
+	                <call-param-rule
+	                    paramnumber="0"/>
+	
+	            </pattern>
+	            <pattern value="transid3">
+	
+	                <call-method-rule
+	                    methodname="setTransid3"
+	                    paramcount="1"/>
+	
+	                <call-param-rule
+	                    paramnumber="0"/>
+	
+	            </pattern>-->
+            </pattern>
+            <set-properties-rule>
+                <alias attr-name="type" prop-name="type" />
+            </set-properties-rule>
+
+            <set-next-rule methodname="addFunction" />
+
+        </pattern>
+
+    </pattern>
+
+</digester-rules>

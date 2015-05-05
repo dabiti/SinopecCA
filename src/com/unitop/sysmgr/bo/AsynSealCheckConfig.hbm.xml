@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.AsynSealCheckConfig" table="ASYNSEALCHECKCONFIG">
+		<id name="jigh" type="string" column="INTERNALORGANIZATIONNUMBER" length="20">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="zidkzip" type="string" column="ZIDKZIP" length="20"/>
+		<property name="zidkzport" type="string" column="ZIDKZPORT" length="5"/>
+		<property name="zidkzipb" type="string" column="ZIDKZIPB" length="20"/>
+		<property name="zidkzcs" type="string" column="ZIDKZCS" length="2"/>
+		<property name="nodeid" type="string" column="NODEID" length="10"/>
+	</class>
+</hibernate-mapping>

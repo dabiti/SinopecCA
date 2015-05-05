@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.unitop.sysmgr.bo.Piaojyxwjb" table="PIAOJYXWJB">
+        <composite-id name="id" class="com.unitop.sysmgr.bo.PiaojyxwjbId">
+            <key-property name="zhangh" type="java.lang.String">
+                <column name="ZHANGH" length="30" />
+            </key-property>
+            <key-property name="wenjbh" type="java.lang.String">
+                <column name="WENJBH" length="30" />
+            </key-property>
+        </composite-id>
+        <property name="yxlx" type="java.lang.String">
+            <column name="YXLX" length="20" />
+        </property>
+        <property name="wenjfwdz" type="java.lang.String">
+            <column name="WENJFWDZ" length="20" />
+        </property>
+        <property name="piaojyxdz" type="java.lang.String">
+            <column name="PIAOJYXDZ" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

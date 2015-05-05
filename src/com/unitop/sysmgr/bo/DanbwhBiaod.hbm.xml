@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.DanbwhBiaod" table="danbwhcb">
+		<composite-id name="id" class="com.unitop.sysmgr.bo.UnionBiaod"> 
+            <key-property name="gongnid" type="string" column="gongnid" length="5"/>
+            <key-property name="zidmc" type="string" column="zidmc" length="50"/>
+        </composite-id>
+		<property name="zhansmc" type="string" column="zhansmc" length="50"/>
+		<property name="zidlx" type="string" column="zidlx" length="10"/>
+		<property name="shurlx" type="string" column="shurlx" length="10"/>
+		<property name="quzfw" type="string" column="quzfw" length="50"/>
+		<property name="morz" type="string" column="morz" length="50"/>
+		<property name="jiaoygz" type="string" column="jiaoygz" length="100"/>
+		<property name="shifbc" type="string" column="shifbc" length="1"/>
+		<property name="shifbj" type="string" column="shifzx" length="1"/>
+		<property name="shifzj" type="string" column="shifzj" length="1"/>
+		<property name="xianssx" type="string" column="xianssx" length="5"/>
+		<property name="beiz" type="string" column="beiz" length="500"/>
+	</class>
+</hibernate-mapping>

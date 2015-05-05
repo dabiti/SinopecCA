@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Zhipyxxx" table="ZHIPYXXX">
+		<id name="jigh" type="string" column="INTERNALORGANIZATIONNUMBER" length="20">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="ip" type="string" column="IP" length="200"/>
+		<property name="port" type="string" column="PORT" length="5"/>
+	</class>
+</hibernate-mapping>

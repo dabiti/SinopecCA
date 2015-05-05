@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.Ocxkongzcsb" table="OCXKONGZCSB">
+		<id name="key" type="string" column="KEY" length="50">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="value" type="string" column="VALUE" length="20" />
+		<property name="target" type="string" column="TARGET" length="20" not-null="true"/>
+		<property name="defaultvalue" type="string" column="DEFAULTVALUE" length="20" not-null="true"/>
+		<property name="remark" type="string" column="REMARK" length="200"/>
+	</class>
+	</hibernate-mapping>

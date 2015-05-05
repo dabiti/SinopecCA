@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Clerk" table="CLERKTABLE">
+		<id name="code" type="string" column="CLERKNUM" length="15">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="name" type="string" column="CLERKNAME" length="10"/>
+		<property name="password" type="string" column="CLERKPWD" length="50"/>
+		<property name="postCode" type="string" column="POSTNUM" length="10"/>
+		<property name="updateDate" type="string" column="N_UPDATEDATE" length="10"/>
+		<property name="orgcode" type="string" column="INTERNALORGANIZATIONNUMBER" length="20"/>
+		<property name="wdFlag" type="string" column="WDFLAG" length="5"/>
+		<property name="errortime" type="integer" column="N_ERROR"/>
+		<property name="logDate" type="string" column="N_LOGDATE" length="10"/>
+		<property name="ip" type="string" column="N_IP" length="15"/>
+		<property name="creator" type="string" column="C_INTERNALORGANIZATIONNUMBER" length="20"/>
+		<property name="shOrgCode" type="string" column="F_INTERNALORGANIZATIONNUMBER" length="20"/>
+		<property name="clerkstatus" type="string" column="CLERKSTATUS" length="4"/>
+		<property name="leixbs" type="string" column="LEIXBS" length="4"/>
+		<property name="status" type="string" column="STATUS" length="2"/>
+	</class>
+</hibernate-mapping>

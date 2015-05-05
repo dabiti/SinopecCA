@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.sys.Ci_xitcs" table="ci_xitcs">
+		<composite-id name="unionXitcs" class="com.unitop.sysmgr.bo.sys.UnionXitcs"> 
+            <key-property name="xitbs" type="string" column="xitbs" length="5"/>
+            <key-property name="cansbs" type="string" column="cansbs" length="10"/>
+        </composite-id>
+        <property name="cansmc" type="string" column="cansmc" length="200"/>
+		<property name="canslx" type="string" column="canslx" length="4"/>
+		<property name="cansfl" type="string" column="cansfl" length="10"/>
+		<property name="cansz" type="string" column="cansz" length="40" />
+		<property name="canssm" type="string" column="canssm" length="500"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<!-- these are the digester rules used to instantiate and configure
+     an org.andromda.core.mapping.Mappings instance using Apache's Digester -->
+<digester-rules>
+
+    <pattern value="fields">
+
+        <object-create-rule
+              classname="com.unitop.bank.DataDict" />
+
+         <pattern value="field">
+
+            <object-create-rule
+                classname="com.unitop.bean.FieldAttribute" />
+
+            <set-properties-rule>
+                <alias attr-name="type" prop-name="type" />
+            </set-properties-rule>
+            
+            <set-properties-rule>
+                <alias attr-name="name" prop-name="name" />
+            </set-properties-rule>
+            
+            <set-properties-rule>
+                <alias attr-name="length" prop-name="length" />
+            </set-properties-rule>
+
+            <set-next-rule methodname="addField" />
+
+        </pattern>
+
+    </pattern>
+
+</digester-rules>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.SystemManageLog" table="SYSTEMMANAGELOG">
+		<id name="id" type="string" column="ID" length="40">
+			<generator class="uuid.hex">
+			</generator>
+		</id>
+		<property name="admincode" type="string" column="CLERKNUM" length="15" not-null="true"/>
+		<property name="content" type="string" column="CONTENT" length="2000"/>
+		<property name="operdate" type="string" column="OPERDATE" length="20" not-null="true"/>
+		<property name="ip" type="string" column="IP" length="32"/>
+	</class>
+	</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Pingzmx" table="pingzcsmx">
+		<id name="pingzh" type="string" column="PINGZH" length="20">
+		<generator class="assigned"></generator>
+		</id>
+		<property name="pich" type="string" column="PICH" length="20"/>
+		<property name="zhangh" type="string" column="ZHANGH" length="30"/>
+		<property name="jigh" type="string" column="INTERNALORGANIZATIONNUMBER" length="10"/>
+		<property name="hum" type="string" column="HUM" length="120"/>
+		<property name="pingzlx" type="string" column="PINGZLX" length="10"/>
+		<property name="guiyh" type="string" column="GUIYH" length="20"/>
+		<property name="riq" type="string" column="RIQ" length="10"/>
+		<property name="shij" type="string" column="SHIJ" length="10"/>
+		<property name="zhuangt" type="string" column="ZHUANGT" length="10"/>
+	</class>
+</hibernate-mapping>

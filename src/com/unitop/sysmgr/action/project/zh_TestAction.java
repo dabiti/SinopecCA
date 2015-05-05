@@ -1,0 +1,13 @@
+package com.unitop.sysmgr.action.project;
+
+public class zh_TestAction {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.unitop.sysmgr.bo.Danbwh" table="danbwhzb">
+		<id name="gongnid" type="string" column="gongnid" length="5">
+		</id>
+		<property name="gongnmc" type="string" column="gongnmc" length="50"/>
+		<property name="weihbm" type="string" column="weihbm" length="50"/>
+		<property name="gongnurl" type="string" column="gongnurl" length="200"/>
+		<property name="shifbc" type="string" column="shifbc" length="1"/>
+		<property name="shifbj" type="string" column="shifbj" length="1"/>
+		<property name="shifsc" type="string" column="shifsc" length="1"/>
+		<property name="shifzb" type="string" column="shifzb" length="1"/>
+		<property name="zhidyl" type="string" column="zhidyl" length="100"/>
+	</class>
+</hibernate-mapping>

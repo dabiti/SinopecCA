@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Kag" table="kagb">
+		<id name="kagid" type="string" column="kagid" length="20">
+		<generator class="assigned">
+		</generator>
+		</id>
+		<property name="kagmc" type="string" column="kagmc" length="30"/>
+		<property name="kagip" type="string" column="kagip" length="30"/>
+		<property name="cengs" type="integer" column="cengs" />
+		<property name="chouts" type="integer" column="chouts" />
+		<property name="choutkj" type="integer" column="choutkj"/>
+		<property name="zongkj" type="integer" column="zongkj" />
+		<property name="shengykj" type="integer" column="shengykj" />
+		<property name="kagzt" type="string" column="kagzt" length="1"/>
+		<property name="caozgy" type="string" column="caozgy" length="15"/>
+		<property name="jigh" type="string" column="internalorganizationnumber" length="20"	/>
+	</class>
+</hibernate-mapping>
