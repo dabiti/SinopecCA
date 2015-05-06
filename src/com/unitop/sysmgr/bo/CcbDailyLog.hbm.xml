@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.CcbDailyLog" table="CcbDailyLog">
+		<id name="terminal_id" type="string" column="TERMINAL_ID" length="20">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="amountsum" type="float" column="AMOUNTSUM" length="20"/>
+		<property name="poundagesum" type="float" column="POUNDAGESUM" length="20"/>
+		<property name="seal_time" type="string" column="SEAL_TIME" length="20"/>
+		<property name="seal_type" type="string" column="SEAL_TYPE" length="20"/>
+		<property name="card_type" type="string" column="CARD_TYPE" length="20"/>
+	</class>
+</hibernate-mapping>

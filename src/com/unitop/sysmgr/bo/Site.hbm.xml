@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.unitop.sysmgr.bo.Site" table="Site">
+		<id name="id" type="string" column="ID" length="20">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<property name="pid" type="stirng" column="PID" length="20"/>
+		<property name="site_name" type="stirng" column="SITE_NAME" length="20"/>
+		<property name="terminal_id" type="string" column="TERMINAL_ID" length="20"/>
+	</class>
+</hibernate-mapping>
