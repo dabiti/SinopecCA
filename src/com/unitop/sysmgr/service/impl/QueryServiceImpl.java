@@ -27,7 +27,7 @@ import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Service;
 
-import com.sinodata.table.model.Table;
+import com.sinopec.table.model.Table;
 import com.unitop.config.DBinfoConig;
 import com.unitop.exception.BusinessException;
 import com.unitop.framework.util.DateTool;

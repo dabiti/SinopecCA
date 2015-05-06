@@ -7,13 +7,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.springframework.stereotype.Controller;
 
-import com.sinodata.table.model.SqlParameter;
-import com.sinodata.table.model.Table;
+import com.sinopec.table.model.SqlParameter;
+import com.sinopec.table.model.Table;
 import com.unitop.framework.util.MapUtil;
 import com.unitop.sysmgr.form.CustomForm;
 import com.unitop.sysmgr.service.impl.QueryServiceImpl;

@@ -3,14 +3,16 @@ package com.unitop.sysmgr.action;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.springframework.stereotype.Controller;
 
-import com.sinodata.table.model.SqlParameter;
+import com.sinopec.table.model.SqlParameter;
 import com.unitop.sysmgr.form.CustomForm;
 /*
  *URPORT ◊÷µ‰≈‰÷√

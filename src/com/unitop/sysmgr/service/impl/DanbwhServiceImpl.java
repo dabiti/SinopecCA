@@ -4,12 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.sinodata.table.model.SqlParameter;
-import com.sinodata.table.model.Table;
+import com.sinopec.table.model.SqlParameter;
+import com.sinopec.table.model.Table;
 import com.unitop.sysmgr.bo.Danbwh;
 import com.unitop.sysmgr.bo.TabsBo;
 import com.unitop.sysmgr.dao.DanbwhBiaodDao;

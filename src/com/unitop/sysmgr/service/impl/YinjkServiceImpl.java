@@ -15,8 +15,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
-import com.sinodata.table.model.SqlParameter;
-import com.sinodata.table.model.Table;
+import com.sinopec.table.model.SqlParameter;
+import com.sinopec.table.model.Table;
 import com.unitop.sysmgr.bo.AccountNum;
 import com.unitop.sysmgr.bo.Yinjk;
 import com.unitop.sysmgr.bo.YinjkManageLog;

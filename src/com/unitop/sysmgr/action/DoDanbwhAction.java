@@ -6,20 +6,22 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.springframework.stereotype.Controller;
 
-import com.sinodata.table.model.RelationTable;
-import com.sinodata.table.model.SqlParameter;
-import com.sinodata.table.model.Table;
-import com.sinodata.table.model.Where;
-import com.sinodata.table.util.DanbwhTool;
-import com.sinodata.table.util.TableTool;
+import com.sinopec.table.model.RelationTable;
+import com.sinopec.table.model.SqlParameter;
+import com.sinopec.table.model.Table;
+import com.sinopec.table.model.Where;
+import com.sinopec.table.util.DanbwhTool;
+import com.sinopec.table.util.TableTool;
 import com.unitop.config.SystemConfig;
 import com.unitop.framework.util.JsonTool;
 import com.unitop.sysmgr.bo.Clerk;

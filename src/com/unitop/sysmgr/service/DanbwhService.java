@@ -3,7 +3,8 @@ package com.unitop.sysmgr.service;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import com.sinodata.table.model.Table;
+
+import com.sinopec.table.model.Table;
 import com.unitop.sysmgr.bo.Danbwh;
 import com.unitop.sysmgr.bo.TabsBo;
 

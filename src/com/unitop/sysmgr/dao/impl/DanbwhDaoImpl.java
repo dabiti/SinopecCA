@@ -18,9 +18,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import com.sinodata.table.model.Dictionary;
-import com.sinodata.table.model.SqlParameter;
-import com.sinodata.table.model.Table;
+import com.sinopec.table.model.Dictionary;
+import com.sinopec.table.model.SqlParameter;
+import com.sinopec.table.model.Table;
 import com.unitop.config.DBinfoConig;
 import com.unitop.sysmgr.bo.Danbwh;
 import com.unitop.sysmgr.bo.TabsBo;

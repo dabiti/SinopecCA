@@ -18,8 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.sinodata.table.model.SqlParameter;
-import com.sinodata.table.model.Table;
+import com.sinopec.table.model.SqlParameter;
+import com.sinopec.table.model.Table;
 import com.unitop.sysmgr.dao.AutoCompleteDao;
 import com.unitop.sysmgr.form.CustomForm;
 import com.unitop.sysmgr.service.DanbwhService;

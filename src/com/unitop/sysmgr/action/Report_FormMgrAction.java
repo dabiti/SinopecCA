@@ -12,7 +12,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.springframework.stereotype.Controller;
 
-import com.sinodata.table.model.SqlParameter;
+import com.sinopec.table.model.SqlParameter;
 import com.unitop.sysmgr.form.CustomForm;
 
 /*

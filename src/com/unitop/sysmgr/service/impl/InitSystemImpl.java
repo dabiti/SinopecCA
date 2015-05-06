@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Resource;
+
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 
-import com.sinodata.common.sequence.SequenceObtain;
-import com.sinodata.report.model.ReportDictionary;
-import com.sinodata.report.util.InitDictionary;
-import com.sinodata.report.util.UeportUserDefined;
-import com.sinodata.table.model.Table;
-import com.sinodata.table.util.TableUserDefined;
+import com.sinopec.common.sequence.SequenceObtain;
+import com.sinopec.report.model.ReportDictionary;
+import com.sinopec.report.util.InitDictionary;
+import com.sinopec.report.util.UeportUserDefined;
+import com.sinopec.table.model.Table;
+import com.sinopec.table.util.TableUserDefined;
 import com.unitop.config.SystemConfig;
 import com.unitop.sysmgr.dao.DanbwhDao;
 import com.unitop.sysmgr.dao.SystemControlParametersDao;
