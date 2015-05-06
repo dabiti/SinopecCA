@@ -4,9 +4,7 @@ import java.util.Map;
 
 public class Report {
 	
-	//wtf
-	//jijiji
-	//fuck git test
+	//fuck
 	private String baobbs="";
 	private String baobmc="";
 	private String baobbt="";
