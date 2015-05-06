@@ -43,7 +43,6 @@ import com.unitop.framework.util.ExpOrImp;
 import com.unitop.framework.util.JsonTool;
 import com.unitop.sysmgr.bo.AccountNum;
 import com.unitop.sysmgr.bo.TabsBo;
-import com.unitop.sysmgr.bo.Yinjk;
 import com.unitop.sysmgr.bo.Zhanghb;
 import com.unitop.sysmgr.bo.Zhanghtbb;
 import com.unitop.sysmgr.bo.Zhanghxzb;
@@ -51,7 +50,6 @@ import com.unitop.sysmgr.dao.DanbwhDao;
 import com.unitop.sysmgr.dao.SystemDao;
 import com.unitop.sysmgr.dao.TabsDao;
 import com.unitop.sysmgr.dao.YinjbDao;
-import com.unitop.sysmgr.dao.YinjkDao;
 import com.unitop.sysmgr.dao.YinjzhbDao;
 import com.unitop.sysmgr.dao.ZhanghbDao;
 import com.unitop.sysmgr.dao.ZhanghtbbDao;
@@ -79,8 +77,6 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 	private DanbwhDao DanbwhDao;
 	@Resource
 	private ZhuczhgxDao zhuczhgxDao;
-	@Resource
-	private YinjkDao YinjkDao;
 	@Resource
 	private SystemMgrService systemMgrService;
 	@Resource
@@ -152,7 +148,6 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		ZhanghbDao.set_Session(session);
 		YinjbDao.set_Session(session);
 		YinjzhbDao.set_Session(session);
-		YinjkDao.set_Session(session);
 		try {
 			Zhanghb zhanghb = ZhanghbDao.getZhanghb(zhangh);
 			// 删除帐号信息
@@ -161,8 +156,7 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 			YinjbDao.delYinj(zhangh);
 			// 删除印鉴组合
 			YinjzhbDao.delYinjzh(zhangh);
-			// 删除印鉴卡
-			YinjkDao.deleteYinjk(zhangh);
+	
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -181,20 +175,12 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		ZhanghbDao.set_Session(session);
 		YinjbDao.set_Session(session);
 		YinjzhbDao.set_Session(session);
-		YinjkDao.set_Session(session);
 		try {
 			Zhanghb zhanghb = ZhanghbDao.getZhanghb(zhangh);
 			zhanghb.setZhanghzt(yzhanghxz);
 			zhanghb.setTingyrq("");
 			ZhanghbDao.updateZhanghb(zhanghb);
 			String zhuzh = zhanghb.getZhuzh();
-			if (yinjkFlag) {
-				if (zhuzh != null && !zhuzh.trim().equals("")) {
-					YinjkDao.resumeYinjk(zhuzh);
-				} else {
-					YinjkDao.resumeYinjk(zhanghb.getZhangh());
-				}
-			}
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -212,19 +198,12 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		ZhanghbDao.set_Session(session);
 		YinjbDao.set_Session(session);
 		YinjzhbDao.set_Session(session);
-		YinjkDao.set_Session(session);
 		try {
 			Zhanghb zhanghb = ZhanghbDao.getZhanghb(zhangh);
 			zhanghb.setZhanghzt("有效");
 			ZhanghbDao.updateZhanghb(zhanghb);
 			String zhuzh = zhanghb.getZhuzh();
-			if (yinjkFlag) {
-				if (zhuzh != null && !zhuzh.trim().equals("")) {
-					YinjkDao.resumeYinjk(zhuzh);
-				} else {
-					YinjkDao.resumeYinjk(zhanghb.getZhangh());
-				}
-			}
+	
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -394,7 +373,6 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		ZhanghbDao.set_Session(session);
 		// YinjbDao.set_Session(session);
 		// YinjzhbDao.set_Session(session);
-		YinjkDao.set_Session(session);
 		try {
 			Zhanghb zhanghb = ZhanghbDao.getZhanghb(zhangh);
 			zhanghb.setZhanghzt("销户");
@@ -403,20 +381,11 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 			String zhuzh = zhanghb.getZhuzh();
 			if (zhuzh == null || zhuzh.trim().equals("")) {
 				int num = this.queryShareAccountNum(zhangh);
-				if (num <= 0) {
-					for (String string : yinjkhList) {
-						YinjkDao.cancleYinjk(string);
-					}
-				}
+			
 			} else {
 				Zhanghb zhuzhb = ZhanghbDao.getZhanghb(zhuzh);
 				if (zhuzhb.getZhanghzt().equals("销户")) {
 					int num = queryShareAccountNum(zhuzh);
-					if (num <= 0) {
-						for (String string : yinjkhList) {
-							YinjkDao.cancleYinjk(string);
-						}
-					}
 				}
 			}
 
@@ -499,45 +468,11 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 				}
 			}
 		}
-		for (String string : yinjkhList) {
-			Yinjk yinjk = YinjkDao.getYinjkByYinjkbh(string);
-			if (yinjk.getYinjkzt().equals("作废")) {
-				pass = true;
-			}
-		}
+
 		return pass;
 	}
 
-	public void cancleYinjk(String zhangh, List<String> yinjkhList) {
-		Session session = this.getBaseHibernateDao().getHibernateSession();
-		Transaction transaction = session.beginTransaction();
-		ZhanghbDao.set_Session(session);
-		// YinjbDao.set_Session(session);
-		// YinjzhbDao.set_Session(session);
-		YinjkDao.set_Session(session);
-		transaction.begin();
-		try {
-			Zhanghb zhanghb = ZhanghbDao.getZhanghb(zhangh);
-			if (zhanghb == null) {
-				return;
-			}
-			if (!zhanghb.getZhanghzt().equals("销户")) {
-				return;
-			}
-			int num = this.queryShareAccountNum(zhangh);
-			if (num <= 0) {
-				for (String string : yinjkhList) {
-					YinjkDao.cancleYinjk(string);
-				}
-			}
-			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			transaction.rollback();
-		} finally {
-			ZhanghbDao.shifSession();
-		}
-	}
+
 
 	/*
 	 * 获取子账户列表信息 by wp
@@ -567,22 +502,9 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		Transaction transaction = session.beginTransaction();
 		transaction.begin();
 		ZhanghbDao.set_Session(session);
-		YinjkDao.set_Session(session);
 		try {
 			ZhanghbDao.updateZhanghb(zhanghb);
-			if (yinjkbhList != null) {
-				for (String string : yinjkbhList) {
-					if (string != null && string.trim().length() != 0) {
-						Yinjk yinjk = new Yinjk();
-						yinjk.setYinjkh(string);
-						yinjk.setZhangh(zhanghb.getZhangh());
-						yinjk.setYinjkzt("已用");
-						yinjk.setJigh(zhanghb.getJigh());
-						yinjk.setQiyrq(zhanghb.getKaihrq());
-						YinjkDao.saveyinjk(yinjk);
-					}
-				}
-			}
+	
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -656,13 +578,7 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		this.zhuczhgxDao = zhuczhgxDao;
 	}
 
-	public YinjkDao getYinjkDao() {
-		return YinjkDao;
-	}
 
-	public void setYinjkDao(YinjkDao yinjkDao) {
-		YinjkDao = yinjkDao;
-	}
 
 	public SystemMgrService getSystemMgrService() {
 		return systemMgrService;
@@ -923,29 +839,29 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		Transaction transaction = session.beginTransaction();
 		transaction.begin();
 		ZhanghbDao.set_Session(session);
-		YinjkDao.set_Session(session);
+//		YinjkDao.set_Session(session);
 		try {
 			ZhanghbDao.updateZhanghb(zhanghb);
 			// 新增的印鉴卡需要存入印鉴卡表中
-			for (String string : yinjkbhList) {
-				if (string != null && string.trim().length() != 0) {
-					Yinjk yinjk = new Yinjk();
-					yinjk.setYinjkh(string);
-					yinjk.setZhangh(zhanghb.getZhangh());
-					yinjk.setYinjkzt("已用");
-					yinjk.setJigh(zhanghb.getJigh());
-					yinjk.setQiyrq(zhanghb.getKaihrq());
-					// yinjk.setShifzk("0");
-
-					YinjkDao.saveyinjk(yinjk);
-				}
-			}
+//			for (String string : yinjkbhList) {
+//				if (string != null && string.trim().length() != 0) {
+//					Yinjk yinjk = new Yinjk();
+//					yinjk.setYinjkh(string);
+//					yinjk.setZhangh(zhanghb.getZhangh());
+//					yinjk.setYinjkzt("已用");
+//					yinjk.setJigh(zhanghb.getJigh());
+//					yinjk.setQiyrq(zhanghb.getKaihrq());
+//					// yinjk.setShifzk("0");
+//
+////					YinjkDao.saveyinjk(yinjk);
+//				}
+//			}
 			// 不用的印鉴卡需要销卡
-			for (String string : oldYinjkbhList) {
-				if (string != null && string.trim().length() != 0) {
-					YinjkDao.cancleYinjk(string);
-				}
-			}
+//			for (String string : oldYinjkbhList) {
+//				if (string != null && string.trim().length() != 0) {
+//					YinjkDao.cancleYinjk(string);
+//				}
+//			}
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2137,37 +2053,6 @@ public class ZhanghbServiceImpl extends BaseServiceImpl implements
 		return null;
 	}
 
-	@Override
-	public void tongbAccountinfoFromTemp(Zhanghb zhanghb) {
-		if(zhanghb==null||zhanghb.getZhangh()==null){
-			return;
-		}
-			Session session = this.getBaseHibernateDao().getHibernateSession();
-			Transaction transaction = session.beginTransaction();
-			transaction.begin();
-			ZhanghbDao.set_Session(session);
-			YinjkDao.set_Session(session);
-			try {
-				ZhanghbDao.updateZhanghb(zhanghb);
-				String yinjkh=zhanghb.getYinjkbh();
-				YinjkDao.deleteYinjk(zhanghb.getZhangh());
-				if(yinjkh!=null&&
-						!yinjkh.trim().equals("")){
-					Yinjk yinjk = new Yinjk();
-					yinjk.setYinjkh(zhanghb.getYinjkbh());
-					yinjk.setZhangh(zhanghb.getZhangh());
-					yinjk.setYinjkzt("已用");
-					yinjk.setJigh(zhanghb.getJigh());
-					yinjk.setQiyrq(zhanghb.getKaihrq());
-					YinjkDao.saveyinjk(yinjk);
-				}
-				transaction.commit();
-			} catch (Exception e) {
-				e.printStackTrace();
-				transaction.rollback();
-			} finally {
-				ZhanghbDao.shifSession();
-			}
-		}
+
 	
 }

@@ -19,7 +19,7 @@
 
 		<property name="leixbs" type="string" column="LEIXBS" length="4"/>
 		<property name="status" type="string" column="STATUS" length="2"/>
-
+		<property name="terminal_id" type="string" column="TERMINAL_ID" length="30"/>
 		<property name="socketAdd" type="string" column="SOCKETADD" length="200"/>
 
 	</class>

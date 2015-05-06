@@ -24,7 +24,7 @@ public class Org implements Serializable {
 	
 	private String status;
 	
-	
+	private String terminal_id;
 	
 
 	
@@ -109,6 +109,14 @@ public class Org implements Serializable {
 
 	public void setSocketAdd(String socketAdd) {
 		this.socketAdd = socketAdd;
+	}
+
+	public String getTerminal_id() {
+		return terminal_id;
+	}
+
+	public void setTerminal_id(String terminal_id) {
+		this.terminal_id = terminal_id;
 	}
 	
 	

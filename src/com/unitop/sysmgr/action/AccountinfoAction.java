@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.sql.Blob;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,10 +38,8 @@ import com.unitop.exception.BusinessException;
 import com.unitop.framework.util.JsonSystemTool;
 import com.unitop.sysmgr.bo.Clerk;
 import com.unitop.sysmgr.bo.Org;
-import com.unitop.sysmgr.bo.PiaojyxwjbId;
 import com.unitop.sysmgr.bo.StringVO;
 import com.unitop.sysmgr.bo.TabsBo;
-import com.unitop.sysmgr.bo.Yinjb;
 import com.unitop.sysmgr.bo.Yinjk;
 import com.unitop.sysmgr.bo.Zhanghb;
 import com.unitop.sysmgr.bo.qianzhi.Head;
@@ -51,7 +47,6 @@ import com.unitop.sysmgr.bo.qianzhi.Msg00400;
 import com.unitop.sysmgr.bo.qianzhi.Msg29178;
 import com.unitop.sysmgr.bo.qianzhi.Msg29179;
 import com.unitop.sysmgr.form.AccountinfoForm;
-import com.unitop.sysmgr.service.AccountImageServcie;
 import com.unitop.sysmgr.service.ZhanghbService;
 import com.unitop.sysmgr.service.impl.ZhanghbServiceImpl;
 import com.unitop.util.DesUtil;
@@ -61,8 +56,6 @@ public class AccountinfoAction extends ExDispatchAction {
 	private static Logger log = Logger.getLogger(AccountinfoAction.class);
 	@Resource
 	private ZhanghbService ZhanghbService;
-	@Resource
-	private AccountImageServcie AccountImageServcie;
 	
 //	private byte [] buf;
 	public boolean CanOperDesOrg(String DesOrg, String OperOrg) {
@@ -1437,32 +1430,7 @@ public class AccountinfoAction extends ExDispatchAction {
 
 	}
 
-	/*
-	 * 下载票据影像
-	 */
-	public ActionForward getBillImage(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String zhangh = request.getParameter("zhangh");
-		// 新旧账号转换
-		if (zhangh != null && zhangh.length()!= 17) {
-			zhangh = ZhanghbService.parseTypeN(zhangh, 17);
-		}
-		String wenjbh = request.getParameter("wenjbh");
-		try {
-			ServletOutputStream out = response.getOutputStream();
-			PiaojyxwjbId id = new PiaojyxwjbId();
-			id.setZhangh(zhangh);
-			id.setWenjbh(wenjbh);
-			AccountImageServcie.downloadBillImage(id, out);
-			out.close();
-			out = null;
-			return null;
-		} catch (Exception e) {
-			return this.errrForLogAndException(e, actionMapping, request, null);
-		}
-	}
-
+	
 
 	/*
 	 * 下载账户印鉴卡影像
@@ -1517,191 +1485,12 @@ public class AccountinfoAction extends ExDispatchAction {
 		}
 	}*/
 	
-	/**
-	 * 下载印鉴信息
-	 * @param actionMapping
-	 * @param actionForm
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	public ActionForward getYinjImage(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String zhangh = request.getParameter("zhangh");
-		String qiyrq=request.getParameter("qiyrq");
-		String yinjbh=request.getParameter("yinjbh");
-		response.setContentType("image/jpeg");
-		response.setLocale(Locale.SIMPLIFIED_CHINESE);
-		response.setCharacterEncoding("GBK");
-		
-		// 新旧账号转换
-		if (zhangh != null && zhangh.length() != 17) {
-			zhangh = ZhanghbService.parseTypeN(zhangh, 17);
-		}
-		OutputStream out =null;
-		InputStream is=null;
-		try {
-			//request.setCharacterEncoding("gbk");
-		//	File image=new File("D://"+UUID.randomUUID()+".dib");
-			out= response.getOutputStream();
-		//	out= new FileOutputStream(image);
-			Yinjb yinjb=AccountImageServcie.downloadYinjImage(zhangh, yinjbh, qiyrq);
-			if(yinjb!=null){
-				Blob yinjtp=yinjb.getYinjtp();
-				if(yinjtp!=null){
-					//byte[] stream = yinjtp.getBytes(1, (int) yinjtp.length());
-					//String tup=Base64.encodeBytes(stream);
-					//out.write(tup.getBytes(),0,tup.getBytes().length);
-					is=yinjtp.getBinaryStream();
-					byte [] buf =new byte [1024*1024];
-					int count =0;
-					while((count =is.read(buf))!=-1){
-						out.write(buf,0,count);
-					}
-					out.flush();
-				}
-			}
-			return null;
-		} catch (Exception e) {
-			return this.errrForLogAndException(e, actionMapping, request, null);
-		}finally{
-			if(is!=null){
-				try {
-					is.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			if(out!=null){
-				try {
-					out.close();
-					out = null;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	/*
-	 * 下载账户印鉴卡影像
-	 */
-	public ActionForward downloadYinjkImage(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String zhangh = request.getParameter("zhangh");
-		// 新旧账号转换
-		if (zhangh != null && zhangh.length() != 17) {
-			zhangh = ZhanghbService.parseTypeN(zhangh, 17);
-		}
-		String yinjkh = request.getParameter("yinjkh");
-		String billcm = request.getParameter("billcm");
-		try {
-			ServletOutputStream out = response.getOutputStream();
-			AccountImageServcie.downloadYinjkImage(zhangh, yinjkh, billcm, out);
-			out.close();
-			out = null;
-			return null;
-		} catch (Exception e) {
-			return this.errrForLogAndException(e, actionMapping, request, null);
-		}
-	}
 	
-	/**
-	 * 获取账号印鉴信息
-	 * @param actionMapping
-	 * @param actionForm
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	public ActionForward getAcccountYjImageList(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String account = request.getParameter("account");
-		try {
-			List<Yinjb> list = AccountImageServcie.getZhanghYjList(account);
-			if (list == null || list.size() == 0) {
-				return this.showMessageJSP(actionMapping, request,
-						"accountinfo.yinj.image", "没有找到此账号的预留印鉴!");
-			}
-			request.setAttribute("yinjList", list);
-			return actionMapping.findForward("accountinfo.yinj.image");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return this.errrForLogAndException(e, actionMapping, request,
-					"accountinfo.yinj.image");
-		}
-	}
 	
 
-	/*
-	 * 获取账号印鉴卡信息
-	 */
-	public ActionForward getAcccountYjkImageList(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String account = request.getParameter("account");
-		try {
-			List list = AccountImageServcie.getZhanghYjkList(account);
-			if (list == null || list.size() == 0) {
-				return this.showMessageJSP(actionMapping, request,
-						"accountinfo.image", "没有找到此账号的预留印鉴卡!");
-			}
-			request.setAttribute("accountList", list);
-			return actionMapping.findForward("accountinfo.image");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return this.errrForLogAndException(e, actionMapping, request,
-					"accountinfo.image");
-		}
-	}
+	
 
-	/*
-	 * 获取账号印鉴卡信息
-	 */
-	public ActionForward getYinjkListByQiyrq(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String zhangh = request.getParameter("zhangh");
-		String qiyrq = request.getParameter("qiyrq");
-		try {
-			List list = AccountImageServcie.getYinjkByQiyrq(zhangh, qiyrq);
-			if (list == null || list.size() == 0) {
-				return this.showMessageJSP(actionMapping, request,
-						"accountinfo.image", "没有找到此账号的预留印鉴卡!");
-			}
-			request.setAttribute("accountList", list);
-			return actionMapping.findForward("accountinfo.image");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return this.errrForLogAndException(e, actionMapping, request,
-					"accountinfo.image");
-		}
-	}
-
-	/*
-	 * 获取票据信息
-	 */
-	public ActionForward getPiaojImageList(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		String zhangh = request.getParameter("zhangh");
-		String pingzbsm = request.getParameter("pingzbsm");
-		try {
-			List list = AccountImageServcie.getBillImgList(zhangh, pingzbsm);
-			if (list == null || list.size() == 0) {
-				return this.showMessageJSP(actionMapping, request,
-						"accountinfo.image", "没有找到此票据!");
-			}
-			request.setAttribute("accountList", list);
-			return actionMapping.findForward("accountinfo.bill");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return this.errrForLogAndException(e, actionMapping, request,
-					"accountinfo.bill");
-		}
-	}
+	
 
 	// 账户冻结跳转页面
 	public ActionForward zhanghdjView(ActionMapping actionMapping,
@@ -1932,8 +1721,8 @@ public class AccountinfoAction extends ExDispatchAction {
 		String yinjkbhStr = createYinjkbhStr(yinjkbhList);
 		request.setAttribute("zhanghb", zhanghb);
 		// 从印鉴卡表中判断印鉴卡编号是否被使用
-		boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
-		if (exist) {
+//		boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
+		if (false) {
 			return super.showMessageJSP(actionMapping, request,
 					"accountinfo.net.inner.zhanghkh.success", "印鉴卡已被使用");
 		}
@@ -2076,8 +1865,8 @@ public class AccountinfoAction extends ExDispatchAction {
 			String type =SystemConfig.getInstance().getValue("yinjk_check_model");
 			String yinjkFlag=yinjkhStr!=null&&yinjkhStr.trim().length()==20?"1":"0"; //根据印鉴卡长度 判断是否为存量账户  存量账户印鉴卡长度为17或者22位
 			if(type.equals("0")||zhanghxz.equals("0")||yinjkFlag.equals("0")){
-				boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
-				if (exist) {
+//				boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
+				if (false) {
 					if(zhanghxz!=null&&!zhanghxz.equals("0")){
 						out.print("1");//共用
 					}else{
@@ -2102,8 +1891,8 @@ public class AccountinfoAction extends ExDispatchAction {
 					return null;
 				}
 				
-				boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
-				if (exist) {
+//				boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
+				if (false) {
 					if(pass==1){
 						out.print("fail002");
 						return null;
@@ -2820,8 +2609,8 @@ public class AccountinfoAction extends ExDispatchAction {
 			request.setAttribute("tongdFlag", tongdFlag);
 			
 				// 检查新增的印鉴卡是否已经被使用
-				boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
-				if (exist) {
+//				boolean exist = yinjkService.CheckYinjkbhList(yinjkbhList);
+				if (false) {
 					return super.showMessageJSP(actionMapping, request,
 							"accountinfo.net.inner.zhanghkh.success", "印鉴卡已被使用");
 				}
@@ -3702,13 +3491,13 @@ public class AccountinfoAction extends ExDispatchAction {
 							"yinjkshare.success", " 此账户已销户!");
 				}
 			}
-			if (yinjkbh != null && !"".equals(yinjkbh)) {
-				Yinjk yinjk = yinjkService.getYinjkByYinjkbh(yinjkbh);
-				if (yinjk == null) {
-					return this.showMessageJSP(mapping, request,
-							"yinjkshare.success", "输入无效,印鉴卡不存在!");
-				}
-			}
+//			if (yinjkbh != null && !"".equals(yinjkbh)) {
+//				Yinjk yinjk = yinjkService.getYinjkByYinjkbh(yinjkbh);
+//				if (yinjk == null) {
+//					return this.showMessageJSP(mapping, request,
+//							"yinjkshare.success", "输入无效,印鉴卡不存在!");
+//				}
+//			}
 			// 根据request中的参数创建分页对象
 			TabsBo TabsBo = this.createTabsBo(request);
 

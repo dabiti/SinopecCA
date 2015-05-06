@@ -20,8 +20,8 @@
 		<%@ include file="/common/yewgz.jsp"%>
 		<script type="text/javascript">
 		$(function(){
-			if($("#orgCode").val()==null||$("#orgCode").val().length==0){
-				$("#orgCode").val('${clerk.orgcode}');
+			if($("#orgcode").val()==null||$("#orgcode").val().length==0){
+				$("#orgcode").val('${clerk.orgcode}');
 				}
 			
 			 //验证
@@ -76,18 +76,18 @@
 			}
 
 		function checkOrg(){
-			var orgcode = $("#orgCode").val();
+			var orgcode = $("#orgcode").val();
 			var reg=  /^[0-9]{4}$/;
 			if(orgcode==null||orgcode.length==0){
-				$("#orgCodeMsg").text("");
+				$("#orgcodeMsg").text("");
 				return true;
 				}
 			if(!reg.test(orgcode)){
-				$('#orgCodeMsg').text(" 机构号格式不正确");
-				document.getElementById("orgCode").select();
+				$('#orgcodeMsg').text(" 机构号格式不正确");
+				document.getElementById("orgcode").select();
 				return false;
 			}
-			$("#orgCodeMsg").text("");
+			$("#orgcodeMsg").text("");
 			return true;
 
 			}
@@ -126,14 +126,14 @@
 				</td>
 				<td class="class1_td" style="text-align: left">
 					<html:form styleId="form1" method="post" action="checkaccount.do?method=list">
-						<table border="0" cellpadding="0" cellspacing="0">
+						<%-- <table border="0" cellpadding="0" cellspacing="0">
 							<tr class="alignleft">
 							<td class=" alignright ">
 									机构号：
 								</td>
 								<td class="alignleft ">
 								<!-- onblur="checkOrg();" onkeydown="if(event.keyCode==13){if(!checkOrg()){this.focus();return false;}}"  -->
-									<html:text styleId="orgCode" property="orgcode" style="width:65px" styleClass="inputField " maxlength="4"  /><span style="color: red" id="orgCodeMsg"></span>
+									<html:text styleId="orgcode" property="orgcode" style="width:65px" styleClass="inputField " maxlength="4"  /><span style="color: red" id="orgcodeMsg"></span>
 								</td>
 								<td class="alignleft class1_td"></td>
 								<td class=" alignright ">
@@ -165,6 +165,51 @@
 										<img src="images/search1.gif" width="13" height="13"
 											align="middle">
 										查询
+									</button>
+								</td>
+							</tr>
+						</table> --%>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td class="class1_td alignright">石化网点名称：</td>
+								<td class="class1_td alignleft">
+									<html:text property="legalname" styleId="account" styleClass="inputField account"/>
+								</td>		
+								<td class="class1_td alignright">终端号：</td>
+								<td class="class1_td alignleft">
+									<html:text property="terminal_id" styleId="account" styleClass="inputField account"/>
+								</td>		
+							<td class="class1_td alignright">交易卡号：</td>
+								<td class="class1_td alignleft">
+									<html:text property="card_id" styleId="account" styleClass="inputField account"/>
+								</td>	
+								<td></td>
+								<td></td>
+								
+								
+							</tr>
+							<tr>
+								<td class="class1_td alignright">交易金额：</td>
+								<td class="class1_td alignleft">
+										<html:text property="amount" styleId="begindate" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="amount" styleId="enddate" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
+								</td>
+								<td class="class1_td alignright">交易时间：</td>
+								<td class="class1_td alignleft">
+										<html:text property="seal_time" styleId="begindate" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="seal_time" styleId="enddate" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
+								</td>
+								
+								<td class="class1_td alignright">交易类型：</td>
+								<td class="class1_td alignleft">
+									<html:select property="seal_type" styleId="canal" >
+										<html:option value="">全部</html:option>
+										<html:option value="YY">消费</html:option>
+										<html:option value="AB">积分兑换</html:option>
+									</html:select>
+								</td>
+								<td class="class1_td alignleft">&nbsp;</td>
+								<td class="class1_td alignleft">
+									<button id="select" type="button" style="width:60px" onmouseover="this.className='buttom2'" onmouseout="this.className='buttom1'" class="buttom1" onclick="submitForm();">
+										<img src="images/search1.gif" width="13" height="13" align="middle">查询
 									</button>
 								</td>
 							</tr>
@@ -227,11 +272,15 @@
 <%--						<ec:exportXls fileName="zhanghtbrz.xls" tooltip="Export Exl" ></ec:exportXls>--%>
 						
 						<ec:row >
-							<ec:column property="zhangh" title="账号" cell="org.extremecomponents.table.cell.DisplayCell" />
-							<ec:column property="hum" title="户名" />
-							<ec:column property="chuangjsj" title="创建时间" />
-							<ec:column property="result" title="同步结果" />
-							<ec:column property="exception" title="失败原因"  />
+							<ec:column property="zhangh" title="石化网点名称" cell="org.extremecomponents.table.cell.DisplayCell" />
+							<ec:column property="hum" title="终端号" />
+							<ec:column property="chuangjsj" title="交易卡号" />
+							<ec:column property="result" title="交易金额" />
+							<ec:column property="exception" title="交易手续费"  />
+							<ec:column property="exception" title="应收金额"  />
+							<ec:column property="exception" title="交易时间"  />
+							<ec:column property="exception" title="交易类型"  />
+							<ec:column property="exception" title="卡类型"  />
 <%--							<ec:column property="shenghjgh" title="分行行号" />--%>
 							<!-- style="display:none" headerStyle="display:none"-
 							

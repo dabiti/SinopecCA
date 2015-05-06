@@ -31,7 +31,6 @@ import com.unitop.sysmgr.service.PrivilegeService;
 import com.unitop.sysmgr.service.PromptService;
 import com.unitop.sysmgr.service.QueryService;
 import com.unitop.sysmgr.service.SystemMgrService;
-import com.unitop.sysmgr.service.YinjkService;
 import com.unitop.util.PhoneUtil;
 
 public class ExDispatchAction extends DispatchAction {
@@ -52,8 +51,8 @@ public class ExDispatchAction extends DispatchAction {
 	protected OrgService OrgService;
 	@Resource
 	protected PrivilegeService privilegeservice;
-	@Resource
-	protected YinjkService yinjkService;
+//	@Resource
+//	protected YinjkService yinjkService;
 
 
 	public ClerkManageService getClerkService() {
@@ -72,13 +71,13 @@ public class ExDispatchAction extends DispatchAction {
 		this.prompteService = prompteService;
 	}
 
-	public YinjkService getYinjkService() {
-		return yinjkService;
-	}
-
-	public void setYinjkService(YinjkService yinjkService) {
-		this.yinjkService = yinjkService;
-	}
+//	public YinjkService getYinjkService() {
+//		return yinjkService;
+//	}
+//
+//	public void setYinjkService(YinjkService yinjkService) {
+//		this.yinjkService = yinjkService;
+//	}
 
 
 

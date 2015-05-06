@@ -11,21 +11,17 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 
 import com.unitop.config.DBinfoConig;
-import com.unitop.exception.BusinessException;
 import com.unitop.sysmgr.bo.AccountManageLog;
 import com.unitop.sysmgr.bo.CanOperAccReturn;
 import com.unitop.sysmgr.bo.Clerk;
 import com.unitop.sysmgr.bo.Org;
 import com.unitop.sysmgr.bo.SystemControlParameter;
 import com.unitop.sysmgr.bo.SystemManageLog;
-import com.unitop.sysmgr.bo.Yinjk;
 import com.unitop.sysmgr.bo.Zhanghb;
 import com.unitop.sysmgr.dao.ClerkDao;
 import com.unitop.sysmgr.dao.OrgDao;
 import com.unitop.sysmgr.dao.SystemDao;
-import com.unitop.sysmgr.dao.YinjkDao;
 import com.unitop.sysmgr.dao.ZhanghbDao;
-import com.unitop.sysmgr.dao.impl.BussinessDAOImpl;
 import com.unitop.sysmgr.service.SystemMgrService;
 @Service("systemMgrService")
 public class SystemMgrServiceImpl extends BaseServiceImpl implements SystemMgrService {
@@ -37,8 +33,8 @@ public class SystemMgrServiceImpl extends BaseServiceImpl implements SystemMgrSe
 	private ZhanghbDao ZhanghbDao;
 	@Resource
 	private ClerkDao ClerkDao;
-	@Resource
-	private YinjkDao yinjkDao;
+//	@Resource
+//	private YinjkDao yinjkDao;
 
 	public void createSystemManageLog(SystemManageLog log) {
 		Session session = this.getHibernateSession();
@@ -326,52 +322,52 @@ public class SystemMgrServiceImpl extends BaseServiceImpl implements SystemMgrSe
 	
 	
 	
-	/**
-	 * @author wcl
-	 * @param tellerorg 柜员ID
-	 * @param operaccount 被操作印鉴卡
-	 */
-	public CanOperAccReturn ProCanOperYinjk(String tellerorg,String operyinjk){
-		
-		Session session = this.getHibernateSession();
-		Integer retflag = 1;
-		String retmsg = "";
-		CanOperAccReturn result = new CanOperAccReturn();
-		try{
-			Yinjk yinjk = yinjkDao.getYinjkByYinjkbh(operyinjk);
-			if(yinjk == null){
-				retflag = -1;
-				retmsg = "印鉴卡不存在:"+operyinjk;
-			}else{
-				if(tellerorg.equals(yinjk.getJigh())){
-					retflag = 1;
-					retmsg = "本机构印鉴卡，可以操作";
-				}else{
-					CanOperAccReturn orgResult = ProCanOperOrg(tellerorg, yinjk.getJigh());
-					if(orgResult.getReturnValue() == true){
-						retflag = 1;
-						retmsg = "直接上级，允许操作";
-					}else{
-						retflag = -1;
-						retmsg = "非直接上级，不允许操作";
-					}
-				}
-			}
-		}catch(HibernateException e){
-			e.printStackTrace();
-		}finally{
-			this.closeSession(session);
-		}
-		
-		if (retflag == 1) {
-			result.setReturnValue(true);
-		} else {
-			result.setReturnValue(false);
-		}
-		result.setReturnMessage(retmsg);
-		
-		return result;
-	}
+//	/**
+//	 * @author wcl
+//	 * @param tellerorg 柜员ID
+//	 * @param operaccount 被操作印鉴卡
+//	 */
+//	public CanOperAccReturn ProCanOperYinjk(String tellerorg,String operyinjk){
+//		
+//		Session session = this.getHibernateSession();
+//		Integer retflag = 1;
+//		String retmsg = "";
+//		CanOperAccReturn result = new CanOperAccReturn();
+//		try{
+//			Yinjk yinjk = yinjkDao.getYinjkByYinjkbh(operyinjk);
+//			if(yinjk == null){
+//				retflag = -1;
+//				retmsg = "印鉴卡不存在:"+operyinjk;
+//			}else{
+//				if(tellerorg.equals(yinjk.getJigh())){
+//					retflag = 1;
+//					retmsg = "本机构印鉴卡，可以操作";
+//				}else{
+//					CanOperAccReturn orgResult = ProCanOperOrg(tellerorg, yinjk.getJigh());
+//					if(orgResult.getReturnValue() == true){
+//						retflag = 1;
+//						retmsg = "直接上级，允许操作";
+//					}else{
+//						retflag = -1;
+//						retmsg = "非直接上级，不允许操作";
+//					}
+//				}
+//			}
+//		}catch(HibernateException e){
+//			e.printStackTrace();
+//		}finally{
+//			this.closeSession(session);
+//		}
+//		
+//		if (retflag == 1) {
+//			result.setReturnValue(true);
+//		} else {
+//			result.setReturnValue(false);
+//		}
+//		result.setReturnMessage(retmsg);
+//		
+//		return result;
+//	}
 	
 	public String getSystemSequence() {
 		Session session = this.getHibernateSession();

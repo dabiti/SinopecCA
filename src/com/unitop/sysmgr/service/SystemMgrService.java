@@ -27,7 +27,7 @@ public interface SystemMgrService {
 	 * @param tellerorg 柜员ID
 	 * @param operaccount 被操作印鉴卡
 	 */
-	public CanOperAccReturn ProCanOperYinjk(String tellerorg,String operyinjk);
+//	public CanOperAccReturn ProCanOperYinjk(String tellerorg,String operyinjk);
 	
 	//获取下一个凭证号
 	public String getPZHSequence();

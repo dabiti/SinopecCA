@@ -109,7 +109,6 @@ public interface ZhanghbService {
 	//获取最新已审组合
 	public List getLastYSzh(String zhangh) throws BusinessException ;
 	
-	public void cancleYinjk(String zhangh, List<String> yinjkhList);
 	
 	//查询账户在销户是是否需要进行销卡操作
 	public boolean canCancleYinjk(String zhangh);
@@ -132,7 +131,6 @@ public interface ZhanghbService {
 	public List<Zhanghb> getZhanghbExcelInfo(String shenghh);
 	public List<String> checkZhanghbExcelInfo(List<Zhanghb> zhanghbExcelList);
 	public Zhanghb getZhanghbTemp(String account);
-	public void tongbAccountinfoFromTemp(Zhanghb zhanghb);
 	public void deleteZhanghb_Excel(String shenghh) ;
 	public List<String> importZhanghzhb(HSSFSheet sheet)throws Exception ;
 	public void deleteZhanghb_Error(String shenghh,String type);

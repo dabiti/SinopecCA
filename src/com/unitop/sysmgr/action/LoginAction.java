@@ -70,255 +70,6 @@ public class LoginAction extends ExDispatchAction {
 		String ipaddress = IPTool.getIpAddr(request);
 		// System.out.println("ip=" + ipaddress);
 
-		// 赞同登录接口
-		if (typeofrequest != null && typeofrequest.contains("zt")) {
-			// 校验位验证DES加密,value=agree2seal
-			try {
-
-				String jiaoywxx = loginForm.getJiaoywxx();
-				String jiaoywStr = DesUtil.decrypt(jiaoywxx);
-				if (!"agree2seal".equals(jiaoywStr)) {
-					throw new Exception();
-				}
-			} catch (Exception e2) {
-				request.setAttribute("logintype", typeofrequest);
-				return this.showMessageJSP(mapping, request, "login.error",
-						"非法登录");
-			}
-
-			String clerkCode = null;
-			boolean manageFlag = false;
-			SystemConfig systemConfig = SystemConfig.getInstance();
-			Date rightNow = Calendar.getInstance().getTime();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			String date = format.format(rightNow);
-
-			try {
-				// 同步参数
-				InitSystem.synchronousSystemParameters();
-
-				clerkCode = loginForm.getCode();
-				Clerk clerk = clerkManageService.getClerkByCode(clerkCode);
-
-				// 先判断柜员是否存在
-				if (clerk == null || "".equals(clerk.getCode())) {
-					request.setAttribute("logintype", typeofrequest);
-					return this.showMessageJSP(mapping, request, "login.error",
-							"登录柜员在验印系统中不存在，请联系管理员");
-				} else {
-					Org parent_org = OrgService.getOrgByCode(clerk
-							.getShOrgCode());
-					clerk.setShOrgName(parent_org.getName());
-					Org org = OrgService.getOrgByCode(clerk.getOrgcode());
-					if(org==null){
-						throw new Exception("柜员上级机构不存在");
-					}
-					clerk.setOrgname(org.getName());
-					clerk.setParentorg(org.getParentCode());
-
-					// 设置柜员权限标识
-					if ("0".equals(org.getWdflag())
-							|| "1".equals(org.getWdflag())) {
-						manageFlag = true;
-					}
-
-					// 判断登录柜员权限
-					if (manageFlag
-							&& systemConfig.getAdminCode().equals(clerkCode)) {
-						// 标识此柜员为“系统管理员”
-						clerk.setSysManager("administrator");
-					}
-					// 判断登录柜员权限
-					if (manageFlag
-							&& (clerk.getOrgcode() + systemConfig
-									.getSuperManager()).equals(clerkCode)) {
-						// 标识此柜员为“系统管理员”
-						clerk.setSysManager("administrator");
-					}
-
-					// if (clerk.getIp() == null) {
-					clerk.setIp(ipaddress);
-					clerkManageService.updateClerk(clerk);
-					clerk.setPassword(PasswordUtil.decodePwd(clerk
-							.getPassword()));
-					// }
-
-					/*
-					 * 获取柜员角色权限集合
-					 */
-					Map juesMap = privilegeService
-							.getPrivilegeForMenue(clerkCode);
-					if (juesMap.size() <= 0) {
-						return this.showMessageJSP(mapping, request,
-								"login.error", "该柜员尚未分配权限，请联系管理员!");
-					}
-					clerk.setJuesMap(juesMap);
-					clerk.setRoleStr(StringUtil.mapToString(juesMap));
-					String roleName = clerkManageService
-							.getClerkByOrgClerkName(clerkCode);
-					clerk.setPostName(roleName);
-
-				}
-
-				HttpSession session = request.getSession();
-				// session.setMaxInactiveInterval(Integer.valueOf(systemConfig
-				// .getValue("outtime")));
-
-				// 记录柜员登录日期
-				clerk.setLoginDate(date);
-				// 记录柜员登录类型 zt联动登录
-				clerk.setLoginType("zt");
-				session.setAttribute("clerk", clerk);
-				Cookie orgcode = new Cookie("orgcodecookie", clerk.getOrgcode());
-				orgcode.setMaxAge(60 * 60 * 24 * 90);
-				response.addCookie(orgcode);
-				this.createManageLog(clerkCode, "登录");
-				// clerkManageService.setErrorNum(clerk.getCode(),"0");
-				Rights.getInstance().setNowonline(
-						Rights.getInstance().getNowonline() + 1);// 增加在线人数
-				session.setAttribute("logintype", "ztlogin");
-
-				if ("ztkaih".equals(typeofrequest)) {
-					{
-						String kaihxx = loginForm.getKaihxx();
-						if (kaihxx != null && !"".equals(kaihxx)) {
-
-							String kaihStr = "";
-							try {
-								kaihStr = DesUtil.decrypt(kaihxx);
-							} catch (Exception e1) {
-								session.setAttribute("logintype", "ztkaih");
-								// 定向跳转
-								ActionForward forward = new ActionForward();
-								forward.setPath("/index.jsp");
-								forward.setRedirect(true);
-								return forward;
-							}
-							// 将核心信息封装入zhanghb实体中
-							JSONObject jsonObj = JSONObject.fromObject(kaihStr);
-							if (jsonObj != null) {
-								String zhangh = (String) jsonObj.get("zhangh");
-								String hum = (String) jsonObj.get("hum");
-								String zhanghxz = (String) jsonObj
-										.get("zhanghxz");
-								String kaihrq = (String) jsonObj.get("kaihrq");
-								if (zhangh != null && !"".equals(zhangh)
-										&& hum != null && !"".equals(hum)
-										&& zhanghxz != null
-										&& !"".equals(zhanghxz)
-										&& kaihrq != null && !"".equals(kaihrq)) {
-									Zhanghb zhanghb = new Zhanghb();
-									zhanghb.setZhangh(zhangh);
-									zhanghb.setHum(hum);
-									String zhanghxzStr = Zhanghb
-											.zhanghxzConvert(zhanghxz);
-									zhanghb.setZhanghxz(zhanghxzStr);
-									zhanghb.setKaihrq(kaihrq);
-									session.setAttribute("zhanghb_zt", zhanghb);
-								}
-							}
-						}
-						session.setAttribute("logintype", "ztkaih");
-					}
-				} else if ("ztzilxg".equals(typeofrequest)) {
-
-					{
-						String zilxgxx = loginForm.getZilxgxx();
-						if (zilxgxx != null && !"".equals(zilxgxx)) {
-
-							String zilxgStr = "";
-							try {
-								zilxgStr = DesUtil.decrypt(zilxgxx);
-							} catch (Exception e1) {
-								session.setAttribute("logintype", "ztzilxg");
-
-								// 定向跳转
-								ActionForward forward = new ActionForward();
-								forward.setPath("/index.jsp");
-								forward.setRedirect(true);
-								return forward;
-							}
-							// 将核心信息封装入zhanghb实体中
-							JSONObject jsonObj = JSONObject
-									.fromObject(zilxgStr);
-							if (jsonObj != null) {
-								String zhangh = (String) jsonObj.get("zhangh");
-								String hum = (String) jsonObj.get("hum");
-								String zhanghxz = (String) jsonObj
-										.get("zhanghxz");
-								String kaihrq = (String) jsonObj.get("kaihrq");
-								if (zhangh != null && !"".equals(zhangh)
-										&& hum != null && !"".equals(hum)
-										&& zhanghxz != null
-										&& !"".equals(zhanghxz)
-										&& kaihrq != null && !"".equals(kaihrq)) {
-									Zhanghb zhanghb = new Zhanghb();
-									zhanghb.setZhangh(zhangh);
-									zhanghb.setHum(hum);
-									String zhanghxzStr = Zhanghb
-											.zhanghxzConvert(zhanghxz);
-									zhanghb.setZhanghxz(zhanghxzStr);
-									zhanghb.setKaihrq(kaihrq);
-									session.setAttribute("zhanghb_zt", zhanghb);
-								}
-							}
-						}
-						session.setAttribute("logintype", "ztzilxg");
-					}
-
-				} else if ("ztxiaoh".equals(typeofrequest)) {
-
-					{
-						String xiaohxx = loginForm.getXiaohxx();
-
-						if (xiaohxx != null && !"".equals(xiaohxx)) {
-							String xiaohStr = "";
-							try {
-								xiaohStr = DesUtil.decrypt(xiaohxx);
-							} catch (Exception e1) {
-								session.setAttribute("logintype", "ztxiaoh");
-
-								// 定向跳转
-								ActionForward forward = new ActionForward();
-								forward.setPath("/index.jsp");
-								forward.setRedirect(true);
-								return forward;
-							}
-							// 将核心信息封装入zhanghb实体中
-							JSONObject jsonObj = JSONObject
-									.fromObject(xiaohStr);
-
-							if (jsonObj != null) {
-								String zhangh = (String) jsonObj.get("zhangh");
-
-								if (zhangh != null && !"".equals(zhangh)) {
-									Zhanghb zhanghb = new Zhanghb();
-									zhanghb.setZhangh(zhangh);
-									session.setAttribute("zhanghb_zt", zhanghb);
-								}
-							}
-						}
-						session.setAttribute("logintype", "ztxiaoh");
-					}
-
-				} else if ("ztqiantyy".equals(typeofrequest)) {
-					{
-						session.setAttribute("logintype", "ztqiantyy");
-					}
-
-				}
-
-				// 定向跳转
-				ActionForward forward = new ActionForward();
-				forward.setPath("/index.jsp");
-				forward.setRedirect(true);
-				return forward;
-			} catch (Exception e) {
-				logString.append("(" + getClass() + ") 输入：柜员号 " + clerkCode);
-				return this.errrForLogAndException(e, mapping, request,
-						"login.error");
-			}
-		} else {
 			// 系统自身登录
 			// 初始化
 			String clerkCode = null;
@@ -391,12 +142,6 @@ public class LoginAction extends ExDispatchAction {
 					}
 
 					// 验印柜员
-					if (clerkType != null && "0".equals(clerkType)) {
-						/*if (!"0".equals(clerk.getLeixbs())) {
-							return this.showMessageJSP(mapping, request,
-									"login.error", "柜员号与柜员登录类型不符!");
-						}
-*/
 						/*
 						 * 判断登录密码是否正确
 						 */
@@ -425,17 +170,6 @@ public class LoginAction extends ExDispatchAction {
 								return this.showMessageJSP(mapping, request,"login.error", getPromptService().getPromptMsg("YYA-ip_err1",map));
 							}
 
-							// //
-							// 如果柜员ip为空，则统计本机器已经登录的柜员数，如果大于0，说明有其他柜员在本机登录，给出提示
-							// if (ip_clerk != null
-							// && !ipaddress.equals(clerk.getIp())) {
-							// Map<String, String> map = new HashMap<String,
-							// String>();
-							// map.put("clerknum", ip_clerk.getCode());
-							// return this.showMessageJSP(mapping, request,
-							// "login.error", getPromptService()
-							// .getPromptMsg("YYA-ip_err2", map));
-							// }
 
 							// 判断登录柜员权限
 							if (manageFlag
@@ -552,82 +286,11 @@ public class LoginAction extends ExDispatchAction {
 											.getPromptMsg("YYA-pwdErrorCat",
 													errormap));
 						}
-						// 核心柜员
-					} else if (clerkType != null && "1".equals(clerkType)) {
-
-					/*	// 核心柜员
-						if (!"1".equals(clerk.getLeixbs())) {
-							return this.showMessageJSP(mapping, request,
-									"login.error", "柜员号与柜员登录类型不符!");
-						}*/
-						clerk.setErrortime(0);
-						clerkManageService.setErrorNum(clerk.getCode(), "0");// 如果密码正确，清空密码错误次数
-
-						if (clerk.getIp() != null
-								&& !clerk.getIp().trim().equals("")) {
-							return this.showMessageJSP(mapping, request,
-									"login.error", "柜员【" + clerk.getCode()
-											+ "】已在IP为:" + clerk.getIp()
-											+ "的机器上登录!");
-						}
-
-						Clerk ip_clerk = clerkManageService
-								.getClerkCountByIp(ipaddress);
-
-						// 判断柜员ip是否是本机器ip，如果不是，则提示！
-						if (clerk.getIp() != null
-								&& !ipaddress.equals(clerk.getIp())) {
-							Map<String, String> map = new HashMap<String, String>();
-							map.put("clerknum", clerk.getCode());
-							map.put("clerkip", clerk.getIp());
-							return this.showMessageJSP(mapping, request,
-									"login.error", getPromptService()
-											.getPromptMsg("YYA-ip_err1", map));
-						}
-
-						// 判断登录柜员权限
-						if (manageFlag
-								&& systemConfig.getAdminCode().equals(
-										loginForm.getCode())) {
-							// 标识此柜员为“系统管理员”
-							clerk.setSysManager("administrator");
-						}
-						// 判断登录柜员权限
-						if (manageFlag
-								&& (clerk.getOrgcode() + systemConfig
-										.getSuperManager()).equals(loginForm
-										.getCode())) {
-							// 标识此柜员为“系统管理员”
-							clerk.setSysManager("administrator");
-						}
-
-						if (clerk.getIp() == null) {
-							clerk.setIp(ipaddress);
-							clerkManageService.updateClerk(clerk);
-							clerk.setPassword(PasswordUtil.decodePwd(clerk
-									.getPassword()));
-						}
-
-						/*
-						 * 获取柜员角色权限集合
-						 */
-						Map juesMap = privilegeService
-								.getPrivilegeForMenue(clerkCode);
-						if (juesMap.size() <= 0) {
-							return this.showMessageJSP(mapping, request,
-									"login.error", "该柜员尚未分配权限，请联系管理员!");
-						}
-						clerk.setJuesMap(juesMap);
-						clerk.setRoleStr(StringUtil.mapToString(juesMap));
-						String roleName = clerkManageService
-								.getClerkByOrgClerkName(clerkCode);
-						clerk.setPostName(roleName);
-					}
 				}
 
 				HttpSession session = request.getSession();
-				session.setMaxInactiveInterval(Integer.valueOf(systemConfig
-						.getValue("outtime")));
+//				session.setMaxInactiveInterval(Integer.valueOf(systemConfig
+//						.getValue("outtime")));
 
 				// 记录柜员登录日期
 				clerk.setLoginDate(date);
@@ -653,7 +316,6 @@ public class LoginAction extends ExDispatchAction {
 			} finally {
 				loginForm.setPassword(null);
 			}
-		}
 	}
 
 	/*

@@ -122,15 +122,15 @@ public class AccessFilter implements Filter {
 				return;
 			}
 		} else {
-			String ipaddress = clerkManageService.getClerkByCode(clerk.getCode()).getIp();
-			if (ipaddress==null||ipaddress.trim().length()==0||!ipaddress.equals(clerk.getIp())) 
-			{	
-				String logintype=clerk.getLoginType();
-				//if (logintype == null ||!logintype.equals("zt")){
-					request.getRequestDispatcher("/areadyLogout.jsp").forward(request, response);
-					return;
-				//}
-			}
+//			String ipaddress = clerkManageService.getClerkByCode(clerk.getCode()).getIp();
+//			if (ipaddress==null||ipaddress.trim().length()==0||!ipaddress.equals(clerk.getIp())) 
+//			{	
+//				String logintype=clerk.getLoginType();
+//				//if (logintype == null ||!logintype.equals("zt")){
+//					request.getRequestDispatcher("/areadyLogout.jsp").forward(request, response);
+//					return;
+//				//}
+//			}
 		}
 		request.setAttribute("totalRows", 0);
 		chain.doFilter(request, response);
