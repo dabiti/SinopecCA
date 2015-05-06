@@ -8,8 +8,8 @@
 			<generator class="assigned">
 			</generator>
 		</id>
-		<property name="pid" type="stirng" column="PID" length="20"/>
-		<property name="site_name" type="stirng" column="SITE_NAME" length="20"/>
+		<property name="pid" type="string" column="PID" length="20"/>
+		<property name="site_name" type="string" column="SITE_NAME" length="20"/>
 		<property name="terminal_id" type="string" column="TERMINAL_ID" length="20"/>
 	</class>
 </hibernate-mapping>
