@@ -1,7 +1,5 @@
 <%@page language="java" contentType="text/html;charset=gbk"
 	isELIgnored="false"%>
-<%@page import="com.unitop.config.PingzpzConfig"%>
-<%@page import="com.unitop.sysmgr.bo.Yanygz"%>
 <%@ include file="/common/struts1.2.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.unitop.config.SystemConfig"%>
