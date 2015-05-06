@@ -66,9 +66,12 @@ public class OrgManageAction extends ExDispatchAction {
 				Org bo = (Org) list.get(i);
 				Element tree = new Element("tree");
 				tree.setAttribute("text", bo.getName());
+//				tree.setAttribute("action",
+//						"../accountlog.do?method=forqueryAccountTongbrz&parentcode="
+//								+ bo.getCode());
 				tree.setAttribute("action",
-						"../accountlog.do?method=forqueryAccountTongbrz&parentcode="
-								+ bo.getCode());
+				"../checkaccount.do?method=forQueryAccounting&parentcode="
+						+ bo.getCode());
 				tree.setAttribute("target", "mainF");
 				tree.setAttribute("src",
 						"../orgManage.do?method=loadtree&parentcode="

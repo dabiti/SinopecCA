@@ -26,7 +26,6 @@ import com.unitop.sysmgr.bo.SystemManageLog;
 import com.unitop.sysmgr.bo.TabsBo;
 import com.unitop.sysmgr.bo.Zhanghb;
 import com.unitop.sysmgr.service.ClerkManageService;
-import com.unitop.sysmgr.service.KagService;
 import com.unitop.sysmgr.service.OrgService;
 import com.unitop.sysmgr.service.PrivilegeService;
 import com.unitop.sysmgr.service.PromptService;
@@ -55,8 +54,7 @@ public class ExDispatchAction extends DispatchAction {
 	protected PrivilegeService privilegeservice;
 	@Resource
 	protected YinjkService yinjkService;
-	@Resource
-	protected KagService kagService;
+
 
 	public ClerkManageService getClerkService() {
 		return clerkService;
@@ -82,13 +80,7 @@ public class ExDispatchAction extends DispatchAction {
 		this.yinjkService = yinjkService;
 	}
 
-	public KagService getKagService() {
-		return kagService;
-	}
 
-	public void setKagService(KagService kagService) {
-		this.kagService = kagService;
-	}
 
 	public StringBuffer getLogString() {
 		return logString;

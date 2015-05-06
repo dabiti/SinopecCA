@@ -46,7 +46,7 @@
             webFXTreeConfig.usePersistence  = false;
 		 	var tree = new WebFXLoadTree(orgName, 
 		 	"../orgManage.do?method=loadtree&parentcode="+orgCode+"&randomid="+randomid,
-		 	"../orgManage.do?method=load&&parentcode="+orgCode,"mainF");
+		 	"../checkaccount.do?method=forQueryAccounting&&parentcode="+orgCode,"mainF");
 		 	document.write(tree);
 	  </script>
 					</div>

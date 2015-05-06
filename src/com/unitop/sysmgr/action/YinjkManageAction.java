@@ -17,23 +17,19 @@ import org.springframework.stereotype.Controller;
 
 import com.unitop.sysmgr.bo.Clerk;
 import com.unitop.sysmgr.bo.Org;
-import com.unitop.sysmgr.bo.TabsBo;
 import com.unitop.sysmgr.bo.Yinjk;
 import com.unitop.sysmgr.bo.YinjkManageLog;
 import com.unitop.sysmgr.bo.YinjkNum;
 import com.unitop.sysmgr.bo.Zhanghb;
 import com.unitop.sysmgr.form.YinjkForm;
-import com.unitop.sysmgr.service.KagService;
 import com.unitop.sysmgr.service.ZhanghbService;
-import com.unitop.sysmgr.service.impl.KagServiceImpl;
 
 @Controller("/yinjkOperate")
 public class YinjkManageAction extends ExDispatchAction {
 	@Resource
 	private ZhanghbService zhanghbService;
 
-	@Resource
-	private KagService kagService;
+
 
 	public ZhanghbService getZhanghbService() {
 		return zhanghbService;
@@ -51,24 +47,7 @@ public class YinjkManageAction extends ExDispatchAction {
 		return actionMapping.findForward("toApply");
 	}
 
-	public ActionForward getYinjk(ActionMapping actionMapping,
-			ActionForm actionForm, HttpServletRequest request,
-			HttpServletResponse response) {
-		YinjkForm yinjkForm = (YinjkForm) actionForm;
-		try {
-			TabsBo TabsBo = this.createTabsBo(request);
-			KagServiceImpl kagServiceImpl = (KagServiceImpl) kagService;
-			kagServiceImpl.setTabsService(TabsBo);
-			TabsBo tabsBo = kagService.getYinjk(yinjkForm);
-			this.showTabsModel(request, tabsBo);
-			return super.showMessageJSPForFeny(actionMapping, request, tabsBo,
-					"toApply");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return this.errrForLogAndException(e, actionMapping, request,
-					"toputandgetcard");
-		}
-	}
+
 
 	/**
 	 * 跳转到统计印鉴卡数量页面

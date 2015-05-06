@@ -11,9 +11,9 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@192.168.21.128:1521:vm11g" />
-		<property name="username" value="yanyin" />
-		<property name="password" value="yanyin" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.12.99:1521:orcl" />
+		<property name="username" value="sinopec" />
+		<property name="password" value="sinopec" />
 		<property name="initialSize" value="100" />
 		<property name="maxWait" value="60000" />
 		<property name="maxIdle" value="50" />

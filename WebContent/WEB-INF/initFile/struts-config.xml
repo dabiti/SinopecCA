@@ -51,6 +51,8 @@
 		<form-bean name="DanbwhgxbForm" type="com.unitop.sysmgr.form.DanbwhgxbForm" />
 		<form-bean name="YinjForm" type="com.unitop.sysmgr.form.YinjForm" />
 		<form-bean name="batchSealCheckForm" type="com.unitop.sysmgr.form.BatchSealCheckForm" />
+		<!-- 中石化对账 -->
+		<form-bean name="checkAcountForm" type="com.unitop.sysmgr.form.CheckAcountForm" />
 	</form-beans>
 	<action-mappings>
 		<action path="/forwordsealchecklog" type="org.apache.struts.actions.ForwardAction"
@@ -626,6 +628,16 @@
 			type="org.springframework.web.struts.DelegatingActionProxy" name="batchSealCheckForm"
 			parameter="method">
 			<forward name="success" path="" />
+		</action>
+		
+		<!-- 中石化对账新增 -->
+		<action path="/checkaccount"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="checkAcountForm"
+			parameter="method">
+			<forward name="checkaccount.list" path="/main/checkaccount/checkaccount_list.jsp" />
+			
+			
+			
 		</action>
 	</action-mappings>
 	<message-resources parameter="MessageResources" />
