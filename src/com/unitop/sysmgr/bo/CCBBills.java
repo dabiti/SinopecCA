@@ -14,6 +14,7 @@ public class CCBBills implements Serializable{
 	private String seal_type;
 	private String card_type;
 	private String seal_date;
+	private String legalname;
 	
 	public String getSeal_date() {
 		return seal_date;
@@ -69,5 +70,11 @@ public class CCBBills implements Serializable{
 	public void setCard_type(String card_type) {
 		this.card_type = card_type;
 	}
-
+	public String getLegalname() {
+		return legalname;
+	}
+	public void setLegalname(String legalname) {
+		this.legalname = legalname;
+	}
+	
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import com.unitop.sysmgr.bo.Clerk;
 import com.unitop.sysmgr.bo.TabsBo;
 import com.unitop.sysmgr.form.AccountLogForm;
+import com.unitop.sysmgr.form.CheckAcountForm;
 import com.unitop.sysmgr.service.ZhanghbService;
 import com.unitop.sysmgr.service.impl.QueryServiceImpl;
 
@@ -40,40 +41,46 @@ public class CheckAccountAction extends ExDispatchAction {
 	
 	
 	
+	
+	
+	
+	
 	/*
-	 * 查询
+	 * 查询建行流水明细
 	 */
 	public ActionForward list(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		AccountLogForm aform = (AccountLogForm) form;
+		CheckAcountForm aform = (CheckAcountForm) form;
 		Clerk clerk = (Clerk) request.getSession().getAttribute("clerk");
-		String jigh =aform.getOrgcode();
-		String account =aform.getAccount();
-		String begindate =aform.getBegindate();
-		String enddate =aform.getEnddate();
+		String legalname =aform.getLegalname();
+		String terminal_id =aform.getTerminal_id();
+		String card_id =aform.getCard_id();
+		Float beginamount =aform.getBeginamount();
+		Float endamount =aform.getEndamount();
+		Float poundage =aform.getPoundage();
+		String beginseal_date =aform.getBeginseal_date();
+		String endseal_date =aform.getEndseal_date();
+		String seal_type =aform.getSeal_type();
+		String card_type =aform.getCard_type();
 		try {
-		//新旧账号转换
-		if (account != null &&account.length() != 17) {
-			account = zhanghbService.parseTypeN(account, 17);
-		}
-		aform.setAccount(account);
-		
-		if(jigh==null||jigh.trim().equals("")){
-			jigh=clerk.getOrgcode();
-		}else{
-			// 判断当前柜员是否有权限查看
-			boolean bool = this.getSystemMgrService().CanOperDesOrg(
-					clerk.getOrgcode(), jigh);
-			if (!bool) {
-				return super.showMessageJSP(mapping, request,
-						"checkaccount.list",
-						"您没有权限查看机构["+jigh+"]!");
-			}
-		}
+
+		//权限
+//		if(jigh==null||jigh.trim().equals("")){
+//			jigh=clerk.getOrgcode();
+//		}else{
+//			// 判断当前柜员是否有权限查看
+//			boolean bool = this.getSystemMgrService().CanOperDesOrg(
+//					clerk.getOrgcode(), jigh);
+//			if (!bool) {
+//				return super.showMessageJSP(mapping, request,
+//						"accountlog.zhanghtb",
+//						"您没有权限查看机构["+jigh+"]!");
+//			}
+//		}
 		TabsBo TabsBo = this.createTabsBo(request);
 		QueryServiceImpl queryServiceImpl = (QueryServiceImpl) this.getQueryService();
 		queryServiceImpl.setTabsService(TabsBo);
-		TabsBo tabsBo = this.getQueryService().findAccountTongbrzLog(account,jigh,begindate,enddate);
+		TabsBo tabsBo = this.getQueryService().findCCBBills(legalname,terminal_id,card_id,card_type,beginamount,endamount,beginseal_date,endseal_date);
 		this.showTabsModel(request, tabsBo);
 		request.setAttribute("jlist", tabsBo.getParamterMapStr());
 		request.setAttribute("jsql", tabsBo.getSql());

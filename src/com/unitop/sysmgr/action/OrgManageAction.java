@@ -70,8 +70,8 @@ public class OrgManageAction extends ExDispatchAction {
 //						"../accountlog.do?method=forqueryAccountTongbrz&parentcode="
 //								+ bo.getCode());
 				tree.setAttribute("action",
-				"../checkaccount.do?method=forQueryAccounting&parentcode="
-						+ bo.getCode());
+				"../checkaccount.do?method=forQueryAccounting&terminal_id="
+						+ bo.getTerminal_id());
 				tree.setAttribute("target", "mainF");
 				tree.setAttribute("src",
 						"../orgManage.do?method=loadtree&parentcode="

@@ -2,6 +2,7 @@ package com.unitop.sysmgr.service;
 
 import java.util.List;
 import java.util.Map;
+
 import com.unitop.exception.BusinessException;
 import com.unitop.sysmgr.bo.Autopasscount;
 import com.unitop.sysmgr.bo.CanOperAccReturn;
@@ -40,5 +41,8 @@ public interface QueryService {
 	public List queryDataToMap(String jsql, Map<String, String> parameterMap,
 			int first, int end, String className);
 	public Autopasscount countAutopassrate(String sql, int counts,String paramstr);
+	TabsBo findCCBBills(String legalname, String terminal_id, String card_id,
+			String card_type, float beginamount, float endamount,
+			String beginseal_date, String endseal_date);
 }
 

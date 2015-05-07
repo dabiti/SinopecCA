@@ -1,14 +1,19 @@
 package com.unitop.sysmgr.form;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.unitop.framework.util.DateTool;
 import com.unitop.sysmgr.service.QueryService;
 import com.unitop.sysmgr.service.SystemMgrService;
 
@@ -20,8 +25,12 @@ public class CheckAcountForm extends ActionForm {
 	private String terminal_id;
 	private String card_id;
 	private float amount;
+	private float beginamount;
+	private float endamount;
 	private float poundage;
-	private String seal_time;
+	private String beginseal_date;
+	private String endseal_date;
+	private String seal_date;
 	private String seal_type;
 	private String card_type;
 	
@@ -30,6 +39,22 @@ public class CheckAcountForm extends ActionForm {
 	@Override
 	public void reset(ActionMapping arg0, HttpServletRequest arg1) {
 		super.reset(arg0, arg1);
+		this.legalname = null;
+		this.terminal_id = null;
+		this.card_id = null;
+		this.amount = 0;
+		this.beginamount = 0;
+		this.endamount = 0;
+		this.poundage = 0;
+		this.seal_date = null;
+		this.seal_type = "全部";
+		this.card_type = "全部";
+		if (!arg1.getServletPath().equals("/checkaccount.do"))
+		{
+			beginseal_date = DateTool.getNowDayForYYYMMDD();
+			endseal_date = DateTool.getThreeMonthAgoYYYMMDD();
+			
+		}
 	}
 
 	@Override
@@ -37,24 +62,24 @@ public class CheckAcountForm extends ActionForm {
 		ActionErrors errors = new ActionErrors();
 		if (arg1.getServletPath().equals("/checkaccount.do") && !arg1.getParameter("method").equals("enter")) 
 		{
-//			try {
-//				if ((begindate != null && begindate.trim().length() > 0) && (enddate != null && enddate.trim().length() > 0)) {
-//					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//					Date begin;
-//					try {
-//						begin = format.parse(begindate);
-//						Date end = format.parse(enddate);
-//						if (end.compareTo(begin) < 1 && !begin.equals(end))
-//						{
-//							errors.add("error date", new ActionMessage("errors.detail", "结束日期不能小于开始日期！"));
-//						}
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
+			try {
+				if ((beginseal_date != null && beginseal_date.trim().length() > 0) && (endseal_date != null && endseal_date.trim().length() > 0)) {
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+					Date begin;
+					try {
+						begin = format.parse(beginseal_date);
+						Date end = format.parse(endseal_date);
+						if (end.compareTo(begin) < 1 && !begin.equals(end))
+						{
+							errors.add("error date", new ActionMessage("errors.detail", "结束日期不能小于开始日期！"));
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return errors;
 	}
@@ -110,14 +135,6 @@ public class CheckAcountForm extends ActionForm {
 		this.card_id = card_id;
 	}
 
-	public float getAmount() {
-		return amount;
-	}
-
-	public void setAmount(float amount) {
-		this.amount = amount;
-	}
-
 	public float getPoundage() {
 		return poundage;
 	}
@@ -126,13 +143,6 @@ public class CheckAcountForm extends ActionForm {
 		this.poundage = poundage;
 	}
 
-	public String getSeal_time() {
-		return seal_time;
-	}
-
-	public void setSeal_time(String seal_time) {
-		this.seal_time = seal_time;
-	}
 
 	public String getSeal_type() {
 		return seal_type;
@@ -149,6 +159,56 @@ public class CheckAcountForm extends ActionForm {
 	public void setCard_type(String card_type) {
 		this.card_type = card_type;
 	}
+
+	public float getBeginamount() {
+		return beginamount;
+	}
+
+	public void setBeginamount(float beginamount) {
+		this.beginamount = beginamount;
+	}
+
+	public float getEndamount() {
+		return endamount;
+	}
+
+	public void setEndamount(float endamount) {
+		this.endamount = endamount;
+	}
+
+	public String getBeginseal_date() {
+		return beginseal_date;
+	}
+
+	public void setBeginseal_date(String beginseal_date) {
+		this.beginseal_date = beginseal_date;
+	}
+
+	public String getEndseal_date() {
+		return endseal_date;
+	}
+
+	public void setEndseal_date(String endseal_date) {
+		this.endseal_date = endseal_date;
+	}
+
+	public float getAmount() {
+		return amount;
+	}
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public String getSeal_date() {
+		return seal_date;
+	}
+
+	public void setSeal_date(String seal_date) {
+		this.seal_date = seal_date;
+	}
+
+	
 
 	
 	

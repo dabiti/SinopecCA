@@ -20,9 +20,9 @@
 		<%@ include file="/common/yewgz.jsp"%>
 		<script type="text/javascript">
 		$(function(){
-			if($("#orgcode").val()==null||$("#orgcode").val().length==0){
+/* 			if($("#orgcode").val()==null||$("#orgcode").val().length==0){
 				$("#orgcode").val('${clerk.orgcode}');
-				}
+				} */
 			
 			 //验证
 			 $("#form1").validate({
@@ -92,7 +92,7 @@
 
 			}
 		function onsubmit1(){
-			 if(!checkendDate())return;
+		//	 if(!checkendDate())return;
 			 $("#form1").submit();
 
 		}
@@ -126,54 +126,11 @@
 				</td>
 				<td class="class1_td" style="text-align: left">
 					<html:form styleId="form1" method="post" action="checkaccount.do?method=list">
-						<%-- <table border="0" cellpadding="0" cellspacing="0">
-							<tr class="alignleft">
-							<td class=" alignright ">
-									机构号：
-								</td>
-								<td class="alignleft ">
-								<!-- onblur="checkOrg();" onkeydown="if(event.keyCode==13){if(!checkOrg()){this.focus();return false;}}"  -->
-									<html:text styleId="orgcode" property="orgcode" style="width:65px" styleClass="inputField " maxlength="4"  /><span style="color: red" id="orgcodeMsg"></span>
-								</td>
-								<td class="alignleft class1_td"></td>
-								<td class=" alignright ">
-									账号：
-								</td>
-								<td class="alignleft ">
-								<!-- onblur="checkAccount();" onkeydown="if(event.keyCode==13){if(!checkAccount()){this.focus();return false;}}"  -->
-									<html:text styleId="zhangh" property="account" styleClass="inputField " maxlength="22"   /><span style="color: red" id="zhanghMsg"  ></span>
-								</td>
-								<td class="alignleft "></td>
-								<td class=" alignright ">
-									起止日期：
-								</td>
-								<td class=" alignleft">
-										<!-- onblur="checkendDate();" onkeydown="if(event.keyCode==13){if(!checkendDate()){this.focus();return false;}}"  -->
-								<html:text property="begindate" styleId="begindate"
-													styleClass="inputField date_input required" maxlength="10"
-													style="width:62px;" onclick="WdatePicker()" />
-												-
-								<html:text property="enddate" styleId="enddate"
-													styleClass="inputField date_input required" maxlength="10"
-													style="width:62px;" onclick="WdatePicker()" />
-								<span style="color: red" id="dateMsg"></span>
-								</td>
-								<td class=" aligncenter w70  alignleft">
-									<button type="button" style="width:60px" onclick="onsubmit1();"
-										onmouseover="this.className='buttom2'"
-										onmouseout="this.className='buttom1'" class="buttom1">
-										<img src="images/search1.gif" width="13" height="13"
-											align="middle">
-										查询
-									</button>
-								</td>
-							</tr>
-						</table> --%>
 						<table width="100%" border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td class="class1_td alignright">石化网点名称：</td>
 								<td class="class1_td alignleft">
-									<html:text property="legalname" styleId="account" styleClass="inputField account"/>
+									<html:text property="legalname" styleId="legalname" styleClass="inputField legalname"/>
 								</td>		
 								<td class="class1_td alignright">终端号：</td>
 								<td class="class1_td alignleft">
@@ -191,11 +148,11 @@
 							<tr>
 								<td class="class1_td alignright">交易金额：</td>
 								<td class="class1_td alignleft">
-										<html:text property="amount" styleId="begindate" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="amount" styleId="enddate" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
+										<html:text property="beginamount" styleId="begindate" styleClass="inputField date_input required"   />－<html:text property="endamount" styleId="enddate" styleClass="inputField date_input required"  />
 								</td>
 								<td class="class1_td alignright">交易时间：</td>
 								<td class="class1_td alignleft">
-										<html:text property="seal_time" styleId="begindate" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="seal_time" styleId="enddate" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
+										<html:text property="beginseal_date" styleId="begindate" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="endseal_date" styleId="enddate" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
 								</td>
 								
 								<td class="class1_td alignright">交易类型：</td>
@@ -208,7 +165,7 @@
 								</td>
 								<td class="class1_td alignleft">&nbsp;</td>
 								<td class="class1_td alignleft">
-									<button id="select" type="button" style="width:60px" onmouseover="this.className='buttom2'" onmouseout="this.className='buttom1'" class="buttom1" onclick="submitForm();">
+									<button id="select" type="button" style="width:60px" onmouseover="this.className='buttom2'" onmouseout="this.className='buttom1'" class="buttom1" onclick="onsubmit1();">
 										<img src="images/search1.gif" width="13" height="13" align="middle">查询
 									</button>
 								</td>
@@ -272,34 +229,14 @@
 <%--						<ec:exportXls fileName="zhanghtbrz.xls" tooltip="Export Exl" ></ec:exportXls>--%>
 						
 						<ec:row >
-							<ec:column property="zhangh" title="石化网点名称" cell="org.extremecomponents.table.cell.DisplayCell" />
-							<ec:column property="hum" title="终端号" />
-							<ec:column property="chuangjsj" title="交易卡号" />
-							<ec:column property="result" title="交易金额" />
-							<ec:column property="exception" title="交易手续费"  />
-							<ec:column property="exception" title="应收金额"  />
-							<ec:column property="exception" title="交易时间"  />
-							<ec:column property="exception" title="交易类型"  />
-							<ec:column property="exception" title="卡类型"  />
-<%--							<ec:column property="shenghjgh" title="分行行号" />--%>
-							<!-- style="display:none" headerStyle="display:none"-
-							
-							private String zhangh;//帐号
-	private String caozlx;//操作类型
-	private String exception;
-	private String chuangjsj;//创建时间
-	private String tongbsj;//同步结束时间
-	private String result;
-	private String str1;
-	private String str2;
-	private String str3;
-	private String shenghjgh ;
-							
-							
-							
-							
-							
-							-->
+							<ec:column property="legalname" title="石化网点名称" cell="org.extremecomponents.table.cell.DisplayCell" />
+							<ec:column property="terminal_id" title="终端号" />
+							<ec:column property="card_id" title="交易卡号" />
+							<ec:column property="amount" title="交易金额" />
+							<ec:column property="poundage" title="交易手续费"  />
+							<ec:column property="seal_date" title="交易时间"  />
+							<ec:column property="seal_type" title="交易类型"  />
+							<ec:column property="card_type" title="卡类型"  />
 						</ec:row>
 					</ec:table>
 				</td>

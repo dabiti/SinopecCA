@@ -155,20 +155,20 @@ public class LoginAction extends ExDispatchAction {
 							clerk.setErrortime(0);
 							clerkManageService.setErrorNum(clerk.getCode(), "0");// 如果密码正确，清空密码错误次数
 
-							if (clerk.getIp() != null
-									&& !clerk.getIp().trim().equals("")) {
-								return this.showMessageJSP(mapping, request,"login.error", "柜员【" + clerk.getCode()+ "】已在IP为:" + clerk.getIp()+ "的机器上登录!");
-							}
+//							if (clerk.getIp() != null
+//									&& !clerk.getIp().trim().equals("")) {
+//								return this.showMessageJSP(mapping, request,"login.error", "柜员【" + clerk.getCode()+ "】已在IP为:" + clerk.getIp()+ "的机器上登录!");
+//							}
 							//Clerk ip_clerk = clerkManageService.getClerkCountByIp(ipaddress);
 
 							// 判断柜员ip是否是本机器ip，如果不是，则提示！
-							if (clerk.getIp() != null
-									&& !ipaddress.equals(clerk.getIp())) {
-								Map<String, String> map = new HashMap<String, String>();
-								map.put("clerknum", clerk.getCode());
-								map.put("clerkip", clerk.getIp());
-								return this.showMessageJSP(mapping, request,"login.error", getPromptService().getPromptMsg("YYA-ip_err1",map));
-							}
+//							if (clerk.getIp() != null
+//									&& !ipaddress.equals(clerk.getIp())) {
+//								Map<String, String> map = new HashMap<String, String>();
+//								map.put("clerknum", clerk.getCode());
+//								map.put("clerkip", clerk.getIp());
+//								return this.showMessageJSP(mapping, request,"login.error", getPromptService().getPromptMsg("YYA-ip_err1",map));
+//							}
 
 
 							// 判断登录柜员权限
