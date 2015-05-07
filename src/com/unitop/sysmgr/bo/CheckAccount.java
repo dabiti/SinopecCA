@@ -15,7 +15,15 @@ public class CheckAccount implements Serializable{
 	private String seal_date;
 	private String seal_type;
 	private String card_type;
+	private String seal_time;
 	
+	public String getSeal_time() {
+		return seal_time;
+	}
+
+	public void setSeal_time(String seal_time) {
+		this.seal_time = seal_time;
+	}
 	public String getSeal_date() {
 		return seal_date;
 	}

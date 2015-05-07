@@ -17,5 +17,6 @@
 		<property name="seal_date" type="string" column="SEAL_DATE" length="20"/>
 		<property name="seal_type" type="string" column="SEAL_TYPE" length="20"/>
 		<property name="card_type" type="string" column="CARD_TYPE" length="20"/>
+		<property name="seal_time" type="string" column="SEAL_TIME" length="20"/>
 	</class>
 </hibernate-mapping>

@@ -13,7 +13,14 @@ public class CCBBills implements Serializable{
 	private String seal_time;
 	private String seal_type;
 	private String card_type;
+	private String seal_date;
 	
+	public String getSeal_date() {
+		return seal_date;
+	}
+	public void setSeal_date(String seal_date) {
+		this.seal_date = seal_date;
+	}
 	public String getBill_id() {
 		return bill_id;
 	}
