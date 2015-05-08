@@ -20,9 +20,9 @@
 		<%@ include file="/common/yewgz.jsp"%>
 		<script type="text/javascript">
 		$(function(){
-/* 			if($("#orgcode").val()==null||$("#orgcode").val().length==0){
-				$("#orgcode").val('${clerk.orgcode}');
-				} */
+		if($("#terminal_id").val()==null||$("#terminal_id").val().length==0){
+				$("#terminal_id").val('${clerk.terminal_id}');
+				} 
 			
 			 //验证
 			 $("#form1").validate({
@@ -134,11 +134,11 @@
 								</td>		
 								<td class="class1_td alignright">终端号：</td>
 								<td class="class1_td alignleft">
-									<html:text property="terminal_id" styleId="account" styleClass="inputField account"/>
+									<html:text property="terminal_id" styleId="terminal_id" styleClass="inputField terminal_id"/>
 								</td>		
 							<td class="class1_td alignright">交易卡号：</td>
 								<td class="class1_td alignleft">
-									<html:text property="card_id" styleId="account" styleClass="inputField account"/>
+									<html:text property="card_id" styleId="card_id" styleClass="inputField card_id"/>
 								</td>	
 								<td></td>
 								<td></td>
@@ -148,7 +148,7 @@
 							<tr>
 								<td class="class1_td alignright">交易金额：</td>
 								<td class="class1_td alignleft">
-										<html:text property="beginamount" styleId="begindate" styleClass="inputField date_input required"   />－<html:text property="endamount" styleId="enddate" styleClass="inputField date_input required"  />
+										<html:text property="beginamount" styleId="beginamount" styleClass="inputField beginamount required"   />－<html:text property="endamount" styleId="endamount" styleClass="inputField endamount required"  />
 								</td>
 								<td class="class1_td alignright">交易时间：</td>
 								<td class="class1_td alignleft">
@@ -157,10 +157,10 @@
 								
 								<td class="class1_td alignright">交易类型：</td>
 								<td class="class1_td alignleft">
-									<html:select property="seal_type" styleId="canal" >
+									<html:select property="seal_type" styleId="seal_type" >
 										<html:option value="">全部</html:option>
-										<html:option value="YY">消费</html:option>
-										<html:option value="AB">积分兑换</html:option>
+										<html:option value="1">消费</html:option>
+										<html:option value="2">积分兑换</html:option>
 									</html:select>
 								</td>
 								<td class="class1_td alignleft">&nbsp;</td>
@@ -234,7 +234,8 @@
 							<ec:column property="card_id" title="交易卡号" />
 							<ec:column property="amount" title="交易金额" />
 							<ec:column property="poundage" title="交易手续费"  />
-							<ec:column property="seal_date" title="交易时间"  />
+							<ec:column property="seal_date" title="交易日期"  />
+							<ec:column property="seal_time" title="交易时间"  />
 							<ec:column property="seal_type" title="交易类型"  />
 							<ec:column property="card_type" title="卡类型"  />
 						</ec:row>

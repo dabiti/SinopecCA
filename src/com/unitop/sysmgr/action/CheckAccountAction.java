@@ -1,5 +1,7 @@
 package com.unitop.sysmgr.action;
 
+import java.math.BigDecimal;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,9 +57,9 @@ public class CheckAccountAction extends ExDispatchAction {
 		String legalname =aform.getLegalname();
 		String terminal_id =aform.getTerminal_id();
 		String card_id =aform.getCard_id();
-		Float beginamount =aform.getBeginamount();
-		Float endamount =aform.getEndamount();
-		Float poundage =aform.getPoundage();
+		BigDecimal beginamount = new BigDecimal(aform.getBeginamount());
+		BigDecimal endamount = new BigDecimal(aform.getEndamount());
+		BigDecimal poundage = new BigDecimal(aform.getPoundage());
 		String beginseal_date =aform.getBeginseal_date();
 		String endseal_date =aform.getEndseal_date();
 		String seal_type =aform.getSeal_type();
@@ -80,7 +82,7 @@ public class CheckAccountAction extends ExDispatchAction {
 		TabsBo TabsBo = this.createTabsBo(request);
 		QueryServiceImpl queryServiceImpl = (QueryServiceImpl) this.getQueryService();
 		queryServiceImpl.setTabsService(TabsBo);
-		TabsBo tabsBo = this.getQueryService().findCCBBills(legalname,terminal_id,card_id,card_type,beginamount,endamount,beginseal_date,endseal_date);
+		TabsBo tabsBo = this.getQueryService().findCCBBills(legalname,terminal_id,card_id,seal_type,card_type,beginamount,endamount,beginseal_date,endseal_date);
 		this.showTabsModel(request, tabsBo);
 		request.setAttribute("jlist", tabsBo.getParamterMapStr());
 		request.setAttribute("jsql", tabsBo.getSql());

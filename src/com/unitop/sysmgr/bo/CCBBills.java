@@ -1,6 +1,7 @@
 package com.unitop.sysmgr.bo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class CCBBills implements Serializable{
 
@@ -8,8 +9,8 @@ public class CCBBills implements Serializable{
 	private String bill_id;
 	private String terminal_id;
 	private String card_id;
-	private float amount;
-	private float poundage;
+	private BigDecimal amount;
+	private BigDecimal poundage;
 	private String seal_time;
 	private String seal_type;
 	private String card_type;
@@ -40,16 +41,18 @@ public class CCBBills implements Serializable{
 	public void setCard_id(String card_id) {
 		this.card_id = card_id;
 	}
-	public float getAmount() {
+	
+	
+	public BigDecimal getAmount() {
 		return amount;
 	}
-	public void setAmount(float amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
-	public float getPoundage() {
+	public BigDecimal getPoundage() {
 		return poundage;
 	}
-	public void setPoundage(float poundage) {
+	public void setPoundage(BigDecimal poundage) {
 		this.poundage = poundage;
 	}
 	public String getSeal_time() {

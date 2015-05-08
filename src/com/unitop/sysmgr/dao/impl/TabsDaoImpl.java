@@ -258,11 +258,11 @@ public class TabsDaoImpl extends BaseDataResources implements TabsDao {
 					query.setBigDecimal(key, (BigDecimal) parameterMap.get(key));
 				if(parameterMap.get(key).getClass() == Boolean.class)
 					query.setBoolean(key, (Boolean) parameterMap.get(key));
-				if(parameterMap.get(key).getClass() == Boolean.class)
+				if(parameterMap.get(key).getClass() == Date.class)
 					query.setDate(key, (Date) parameterMap.get(key));
-				if(parameterMap.get(key).getClass() == Boolean.class)
+				if(parameterMap.get(key).getClass() == Float.class)
 					query.setFloat(key, (Float) parameterMap.get(key));
-				if(parameterMap.get(key).getClass() == Boolean.class)
+				if(parameterMap.get(key).getClass() == Double.class)
 					query.setDouble(key, (Double) parameterMap.get(key));
 			}
 		}

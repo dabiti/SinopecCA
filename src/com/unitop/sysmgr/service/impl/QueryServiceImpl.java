@@ -1565,12 +1565,14 @@ public class QueryServiceImpl extends BaseServiceImpl implements QueryService {
 	
 	
 	@Override
-	public TabsBo findCCBBills(String legalname, String terminal_id,String card_id,String seal_type,	
-			float beginamount,float endamount,String beginseal_date, String endseal_date) {
-		String SQL ="select o.legalname,o.terminal_id,c.bill_id,c.card_id,c.amount,c.poundage,c.seal_type,c.seal_type,c.seal_date,c.seal_time from ccbbills  c left join organarchives o on c.terminal_id=o.terminal_id  where c.seal_date >=:beginseal_date and c.seal_date <=:endseal_date  and o.terminal_id in (select terminal_id  from ORGANARCHIVES  where level > 1  and CONNECT_BY_ISLEAF = 1 connect by prior internalorganizationnumber = p_internalorganizationnumber  start with terminal_id =:terminal_id)";
+	public TabsBo findCCBBills(String legalname, String terminal_id,String card_id,String seal_type,String carid_type,	
+			BigDecimal beginamount,BigDecimal endamount,String beginseal_date, String endseal_date) {
+		String SQL ="select o.legalname,o.terminal_id,c.card_id,c.amount,c.poundage,c.seal_type,c.seal_date,c.seal_time,c.card_type from ccbbills  c left join organarchives o on c.terminal_id=o.terminal_id  where c.seal_date >=:beginseal_date and c.seal_date <=:endseal_date  and c.amount >:beginamount and c.amount <=:endamount and o.terminal_id in (select terminal_id  from ORGANARCHIVES  where level > 1  and CONNECT_BY_ISLEAF = 1 connect by prior internalorganizationnumber = p_internalorganizationnumber  start with terminal_id =:terminal_id)";
 		Map paraMap=new HashMap();
 		paraMap.put("beginseal_date", beginseal_date);
 		paraMap.put("endseal_date", endseal_date);
+		paraMap.put("beginamount", beginamount);
+		paraMap.put("endamount", endamount);
 		if(terminal_id==null||"".equals(terminal_id.trim())){
 			terminal_id="88888888";
 		}
@@ -1582,20 +1584,20 @@ public class QueryServiceImpl extends BaseServiceImpl implements QueryService {
 			}
 	
 		if(card_id!=null&&!card_id.trim().equals("")){
-			SQL=SQL+" and o.card_id=:card_id ";
+			SQL=SQL+" and c.card_id=:card_id ";
 			paraMap.put("card_id", card_id);
 		}
 		
 		if(seal_type!=null&&!seal_type.trim().equals("")){
-			SQL=SQL+" and o.seal_type=:seal_type ";
+			if("1".equals(seal_type.trim())){
+				seal_type="消费";
+			}else if("2".equals(seal_type.trim())){
+				seal_type="积分兑换";
+			}
+			SQL=SQL+" and c.seal_type=:seal_type ";
 			paraMap.put("seal_type", seal_type);
 		}
 	
-//		if(beginamount!=0&&endamount!=0){
-//			SQL=SQL+" and c.amount >=:beginamount and c.amount <=:endamount ";
-//			paraMap.put("beginamount", beginamount);
-//			paraMap.put("endamount", endamount);
-//		}
 		
 		SQL=SQL+" order by c.seal_date desc  ";
 		System.out.println("===SQL:"+SQL);
@@ -1609,11 +1611,12 @@ public class QueryServiceImpl extends BaseServiceImpl implements QueryService {
 			ccbbills.setLegalname(String.valueOf(element[0]==null?"":element[0]));
 			ccbbills.setTerminal_id(String.valueOf(element[1]==null?"":element[1]));
 			ccbbills.setCard_id(String.valueOf(element[2]==null?"":element[2]));
-			ccbbills.setAmount(Float.valueOf(String.valueOf(element[3]==null?"":element[3])));
-			ccbbills.setPoundage(Float.valueOf(String.valueOf(element[4]==null?"":element[4])));
-			ccbbills.setSeal_date(String.valueOf(element[5]==null?"":element[5]));
-			ccbbills.setSeal_type(String.valueOf(element[6]==null?"":element[6]));
-			ccbbills.setCard_type(String.valueOf(element[7]==null?"":element[7]));
+			ccbbills.setAmount(new BigDecimal(String.valueOf(element[3]==null?"":element[3])));
+			ccbbills.setPoundage(new BigDecimal(String.valueOf(element[4]==null?"":element[4])));
+			ccbbills.setSeal_type(String.valueOf(element[5]==null?"":element[5]));
+			ccbbills.setSeal_date(String.valueOf(element[6]==null?"":element[6]));
+			ccbbills.setSeal_time(String.valueOf(element[7]==null?"":element[7]));
+			ccbbills.setCard_type(String.valueOf(element[8]==null?"":element[8]));
 			
 			result.add(ccbbills);
 		}

@@ -1,17 +1,18 @@
 package com.unitop.sysmgr.bo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class CheckAccount implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String site_name;
 	private String terminal_id;
-	private float sino_amountsum;
-	private float sino_poundagesum;
-	private float ccb_amountsum;
-	private float ccb_poundagesum;
-	private float ccb_settlesum;
+	private BigDecimal sino_amountsum;
+	private BigDecimal sino_poundagesum;
+	private BigDecimal ccb_amountsum;
+	private BigDecimal ccb_poundagesum;
+	private BigDecimal ccb_settlesum;
 	private String seal_date;
 	private String seal_type;
 	private String card_type;
@@ -56,46 +57,48 @@ public class CheckAccount implements Serializable{
 		this.terminal_id = terminal_id;
 	}
 
-	public float getSino_amountsum() {
+	
+	
+	public BigDecimal getSino_amountsum() {
 		return sino_amountsum;
 	}
 
-	public void setSino_amountsum(float sino_amountsum) {
+	public void setSino_amountsum(BigDecimal sino_amountsum) {
 		this.sino_amountsum = sino_amountsum;
 	}
 
-	public float getSino_poundagesum() {
+	public BigDecimal getSino_poundagesum() {
 		return sino_poundagesum;
 	}
 
-	public void setSino_poundagesum(float sino_poundagesum) {
+	public void setSino_poundagesum(BigDecimal sino_poundagesum) {
 		this.sino_poundagesum = sino_poundagesum;
 	}
 
-	public float getCcb_amountsum() {
+	public BigDecimal getCcb_amountsum() {
 		return ccb_amountsum;
 	}
 
-	public void setCcb_amountsum(float ccb_amountsum) {
+	public void setCcb_amountsum(BigDecimal ccb_amountsum) {
 		this.ccb_amountsum = ccb_amountsum;
 	}
 
-	public float getCcb_poundagesum() {
+	public BigDecimal getCcb_poundagesum() {
 		return ccb_poundagesum;
 	}
 
-	public void setCcb_poundagesum(float ccb_poundagesum) {
+	public void setCcb_poundagesum(BigDecimal ccb_poundagesum) {
 		this.ccb_poundagesum = ccb_poundagesum;
 	}
 
-	public float getCcb_settlesum() {
+	public BigDecimal getCcb_settlesum() {
 		return ccb_settlesum;
 	}
 
-	public void setCcb_settlesum(float ccb_settlesum) {
+	public void setCcb_settlesum(BigDecimal ccb_settlesum) {
 		this.ccb_settlesum = ccb_settlesum;
 	}
-	
+
 	public String getSite_name() {
 		return site_name;
 	}

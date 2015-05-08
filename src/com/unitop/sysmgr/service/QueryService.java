@@ -1,5 +1,6 @@
 package com.unitop.sysmgr.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +42,9 @@ public interface QueryService {
 	public List queryDataToMap(String jsql, Map<String, String> parameterMap,
 			int first, int end, String className);
 	public Autopasscount countAutopassrate(String sql, int counts,String paramstr);
+
 	TabsBo findCCBBills(String legalname, String terminal_id, String card_id,
-			String card_type, float beginamount, float endamount,
-			String beginseal_date, String endseal_date);
+			String seal_type, String carid_type, BigDecimal beginamount,
+			BigDecimal endamount, String beginseal_date, String endseal_date);
 }
 

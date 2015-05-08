@@ -1,5 +1,6 @@
 package com.unitop.sysmgr.form;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,10 +25,10 @@ public class CheckAcountForm extends ActionForm {
 	private String legalname;
 	private String terminal_id;
 	private String card_id;
-	private float amount;
-	private float beginamount;
-	private float endamount;
-	private float poundage;
+	private String amount;
+	private String beginamount;
+	private String endamount;
+	private String poundage;
 	private String beginseal_date;
 	private String endseal_date;
 	private String seal_date;
@@ -42,14 +43,14 @@ public class CheckAcountForm extends ActionForm {
 		this.legalname = null;
 		this.terminal_id = null;
 		this.card_id = null;
-		this.amount = 0;
-		this.beginamount = 0;
-		this.endamount = 0;
-		this.poundage = 0;
+		this.amount = "0";
+		this.beginamount = "0";
+		this.endamount = "9999999999.99";
+		 this.poundage = "0";
 		this.seal_date = null;
-		this.seal_type = "全部";
-		this.card_type = "全部";
-		if (!arg1.getServletPath().equals("/checkaccount.do"))
+		this.seal_type = null;
+		this.card_type = null;
+		if (arg1.getServletPath().equals("/checkaccount.do"))
 		{
 			beginseal_date = DateTool.getNowDayForYYYMMDD();
 			endseal_date = DateTool.getThreeMonthAgoYYYMMDD();
@@ -135,14 +136,6 @@ public class CheckAcountForm extends ActionForm {
 		this.card_id = card_id;
 	}
 
-	public float getPoundage() {
-		return poundage;
-	}
-
-	public void setPoundage(float poundage) {
-		this.poundage = poundage;
-	}
-
 
 	public String getSeal_type() {
 		return seal_type;
@@ -160,21 +153,7 @@ public class CheckAcountForm extends ActionForm {
 		this.card_type = card_type;
 	}
 
-	public float getBeginamount() {
-		return beginamount;
-	}
-
-	public void setBeginamount(float beginamount) {
-		this.beginamount = beginamount;
-	}
-
-	public float getEndamount() {
-		return endamount;
-	}
-
-	public void setEndamount(float endamount) {
-		this.endamount = endamount;
-	}
+	
 
 	public String getBeginseal_date() {
 		return beginseal_date;
@@ -192,13 +171,7 @@ public class CheckAcountForm extends ActionForm {
 		this.endseal_date = endseal_date;
 	}
 
-	public float getAmount() {
-		return amount;
-	}
 
-	public void setAmount(float amount) {
-		this.amount = amount;
-	}
 
 	public String getSeal_date() {
 		return seal_date;
@@ -208,6 +181,39 @@ public class CheckAcountForm extends ActionForm {
 		this.seal_date = seal_date;
 	}
 
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public String getBeginamount() {
+		return beginamount;
+	}
+
+	public void setBeginamount(String beginamount) {
+		this.beginamount = beginamount;
+	}
+
+	public String getEndamount() {
+		return endamount;
+	}
+
+	public void setEndamount(String endamount) {
+		this.endamount = endamount;
+	}
+
+	public String getPoundage() {
+		return poundage;
+	}
+
+	public void setPoundage(String poundage) {
+		this.poundage = poundage;
+	}
+
+	
 	
 
 	

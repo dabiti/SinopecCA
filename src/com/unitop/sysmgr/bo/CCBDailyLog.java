@@ -1,13 +1,14 @@
 package com.unitop.sysmgr.bo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class CCBDailyLog implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String terminal_id;
-	private float amountsum;
-	private float poundagesum;
+	private BigDecimal amountsum;
+	private BigDecimal poundagesum;
 	private String seal_type;
 	private String seal_date;
 	private String card_type;
@@ -32,18 +33,25 @@ public class CCBDailyLog implements Serializable{
 	public void setTerminal_id(String terminal_id) {
 		this.terminal_id = terminal_id;
 	}
-	public float getAmountsum() {
+
+	
+
+	public BigDecimal getAmountsum() {
 		return amountsum;
 	}
-	public void setAmountsum(float amountsum) {
+
+	public void setAmountsum(BigDecimal amountsum) {
 		this.amountsum = amountsum;
 	}
-	public float getPoundagesum() {
+
+	public BigDecimal getPoundagesum() {
 		return poundagesum;
 	}
-	public void setPoundagesum(float poundagesum) {
+
+	public void setPoundagesum(BigDecimal poundagesum) {
 		this.poundagesum = poundagesum;
 	}
+
 	public String getSeal_type() {
 		return seal_type;
 	}

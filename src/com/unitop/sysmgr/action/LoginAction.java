@@ -128,7 +128,7 @@ public class LoginAction extends ExDispatchAction {
 					Org org = OrgService.getOrgByCode(clerk.getOrgcode());	
 					clerk.setParentorg(org.getParentCode());
 					clerk.setOrgname(org.getName());
-
+					clerk.setTerminal_id(org.getTerminal_id());
 					// 设置柜员权限标识
 					if ("0".equals(org.getWdflag())
 							|| "1".equals(org.getWdflag())) {
