@@ -635,7 +635,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy" name="checkAcountForm"
 			parameter="method">
 			<forward name="checkaccount.list" path="/main/checkaccount/checkaccount_list.jsp" />
-			
+			<forward name="checkaccount.sum" path="/main/checkaccount/sumaccount_list.jsp" />
 			
 			
 		</action>

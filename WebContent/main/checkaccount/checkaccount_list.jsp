@@ -117,7 +117,7 @@
 					<img src="images/main_place_pic.gif" width="38" height="32">
 				</td>
 				<td background="images/main_place_bg.gif">
-					报表查看 
+					流水报表查看 
 				</td>
 			</tr>
 			<tr>
@@ -224,7 +224,7 @@
 						filterable="false" sortable="false" 
 						title="交易查询结果" showPagination="true" view="compact"
 						items="list" var="zhanghtbb"  rowsDisplayed="${ec_yemjlts}" 
-						action="${pageContext.request.contextPath}/accountlog.do"
+						action="${pageContext.request.contextPath}/checkaccount.do"
 						imagePath="${pageContext.request.contextPath}/images/table/*.gif">
 <%--						<ec:exportXls fileName="zhanghtbrz.xls" tooltip="Export Exl" ></ec:exportXls>--%>
 						

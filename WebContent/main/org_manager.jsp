@@ -13,7 +13,7 @@
 			marginheight="0" frameborder="no">
 		<frame name="bar" src="bar.htm" noResize scrolling="no">
 		<frame name="mainF"
-			src="../checkaccount.do?method=forQueryAccounting&parentcode=${clerk.orgcode}"
+			src="../right.jsp"
 			scrolling="yes" marginwidth="0" marginheight="0" frameborder="no">
 	</frameset>
 	<noframes>

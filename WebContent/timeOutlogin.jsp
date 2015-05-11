@@ -9,7 +9,7 @@
 <script type="text/javascript" language="javascript">
 
 function logout2(){
-			 	var newwin = parent.parent.window;
+			 	var newwin = parent.parent.parent.window;
 			 	newwin.location.href="<%=request.getContextPath() %>/login.jsp";
 }
 
@@ -43,7 +43,7 @@ function logout2(){
                 <td width="30%" bgcolor="#FFFFFF" class="noline"><div align="right"><img src="<%=request.getContextPath() %>/images/7.png" width="128" height="128" align="absmiddle" /></div></td>
                 <td width="3%"  bgcolor="#FFFFFF" class="noline"></td>
                 <td width="50%"  bgcolor="#FFFFFF" class="place noline">
-					<B>柜员登录超时或已签退!</font>请退出系统，<a  class="user2" onclick="logout2();" href="">重新登录!</a></>
+					<B>登录超时!</font>请退出系统，<a  class="user2" onclick="logout2();" href="">重新登录!</a></>
                 </td>
               </tr>
           </table></td>

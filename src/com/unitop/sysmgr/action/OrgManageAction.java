@@ -69,9 +69,16 @@ public class OrgManageAction extends ExDispatchAction {
 //				tree.setAttribute("action",
 //						"../accountlog.do?method=forqueryAccountTongbrz&parentcode="
 //								+ bo.getCode());
-				tree.setAttribute("action",
-				"../checkaccount.do?method=forQueryAccounting&terminal_id="
-						+ bo.getTerminal_id());
+				String wdflag = bo.getWdflag();
+				if("3".equals(wdflag)){
+					tree.setAttribute("action",
+							"../checkaccount.do?method=forQueryAccounting&terminal_id="
+									+ bo.getTerminal_id());
+				}else{
+					tree.setAttribute("action",
+							"../checkaccount.do?method=forQuerySumAccount&terminal_id="
+									+ bo.getTerminal_id());
+				}
 				tree.setAttribute("target", "mainF");
 				tree.setAttribute("src",
 						"../orgManage.do?method=loadtree&parentcode="

@@ -10,9 +10,6 @@
 		</id>
 		<property name="amountsum" type="big_decimal" column="AMOUNTSUM" length="30"/>
 		<property name="poundagesum" type="big_decimal" column="POUNDAGESUM" length="30"/>
-		<property name="seal_type" type="string" column="SEAL_TYPE" length="30"/>
 		<property name="seal_date" type="string" column="SEAL_DATE" length="30"/>
-		<property name="card_type" type="string" column="CARD_TYPE" length="30"/>
-		<property name="seal_time" type="string" column="SEAL_TIME" length="30"/>
 	</class>
 </hibernate-mapping>

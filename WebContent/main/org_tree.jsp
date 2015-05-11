@@ -15,6 +15,7 @@
 	<body onkeydown='if(event.keyCode==78&&event.ctrlKey)return false;'>
 		<input id="orgName" type="hidden" value="${clerk.orgname}">
 		<input id=orgCode type="hidden" value="${clerk.orgcode}">
+		<input id=terminal_id type="hidden" value="${clerk.terminal_id}">
 		<table width="213" height="100%" border="0" cellpadding="0"
 			cellspacing="1" class="1">
 			<tr bgcolor="AAD4DE">
@@ -28,8 +29,9 @@
 					<div style=overflow:auto">
 						<script type="text/javascript">
 			var randomid = Math.floor(Math.random() * 1000000) + 1;
-          	var orgName = document.getElementById('orgName').value;
-          	var orgCode = document.getElementById('orgCode').value;
+          	var orgName = "中国石化";
+          	var orgCode = "9988";
+          	var terminal_id = document.getElementById('terminal_id').value;
 		 	webFXTreeConfig.rootIcon	= "../js/tree/images/xp/folder.png";
 		 	webFXTreeConfig.openRootIcon	= "../js/tree/images/xp/openfolder.png";
 		 	webFXTreeConfig.folderIcon	= "../js/tree/images/xp/folder.png";
@@ -46,7 +48,7 @@
             webFXTreeConfig.usePersistence  = false;
 		 	var tree = new WebFXLoadTree(orgName, 
 		 	"../orgManage.do?method=loadtree&parentcode="+orgCode+"&randomid="+randomid,
-		 	"../checkaccount.do?method=forQueryAccounting&&parentcode="+orgCode,"mainF");
+		 	"../checkaccount.do?method=forQuerySumAccount&&terminal_id="+terminal_id,"mainF");
 		 	document.write(tree);
 	  </script>
 					</div>

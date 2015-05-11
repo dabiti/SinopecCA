@@ -35,6 +35,7 @@ import com.unitop.framework.util.Format;
 import com.unitop.sysmgr.bo.AccountLog;
 import com.unitop.sysmgr.bo.Autopasscount;
 import com.unitop.sysmgr.bo.CCBBills;
+import com.unitop.sysmgr.bo.CCBDailyLog;
 import com.unitop.sysmgr.bo.CanOperAccReturn;
 import com.unitop.sysmgr.bo.Dzcxinfo;
 import com.unitop.sysmgr.bo.Org;
@@ -1567,7 +1568,7 @@ public class QueryServiceImpl extends BaseServiceImpl implements QueryService {
 	@Override
 	public TabsBo findCCBBills(String legalname, String terminal_id,String card_id,String seal_type,String carid_type,	
 			BigDecimal beginamount,BigDecimal endamount,String beginseal_date, String endseal_date) {
-		String SQL ="select o.legalname,o.terminal_id,c.card_id,c.amount,c.poundage,c.seal_type,c.seal_date,c.seal_time,c.card_type from ccbbills  c left join organarchives o on c.terminal_id=o.terminal_id  where c.seal_date >=:beginseal_date and c.seal_date <=:endseal_date  and c.amount >:beginamount and c.amount <=:endamount and o.terminal_id in (select terminal_id  from ORGANARCHIVES  where level > 1  and CONNECT_BY_ISLEAF = 1 connect by prior internalorganizationnumber = p_internalorganizationnumber  start with terminal_id =:terminal_id)";
+		String SQL ="select o.legalname,o.terminal_id,c.card_id,c.amount,c.poundage,c.seal_type,c.seal_date,c.seal_time,c.card_type from ccbbills  c left join organarchives o on c.terminal_id=o.terminal_id  where c.seal_date >=:beginseal_date and c.seal_date <=:endseal_date  and c.amount >:beginamount and c.amount <=:endamount and o.terminal_id in (select terminal_id  from ORGANARCHIVES  where  CONNECT_BY_ISLEAF = 1 connect by prior internalorganizationnumber = p_internalorganizationnumber  start with terminal_id =:terminal_id)";
 		Map paraMap=new HashMap();
 		paraMap.put("beginseal_date", beginseal_date);
 		paraMap.put("endseal_date", endseal_date);
@@ -1619,6 +1620,41 @@ public class QueryServiceImpl extends BaseServiceImpl implements QueryService {
 			ccbbills.setCard_type(String.valueOf(element[8]==null?"":element[8]));
 			
 			result.add(ccbbills);
+		}
+		tabsBoModle.setList(result);
+		return tabsBoModle;
+	}
+	
+	
+	
+	
+	@Override
+	public TabsBo findSumAccount(String terminal_id,String beginseal_date, String endseal_date) {
+		String SQL ="select o.legalname,  o.terminal_id,  c.AMOUNTSUM,  c.POUNDAGESUM,  c.SEAL_DATE from CCBDAILYLOG c left join organarchives o  on c.terminal_id = o.terminal_id where c.seal_date >= :beginseal_date and c.seal_date <= :endseal_date  and o.terminal_id in (select terminal_id  from ORGANARCHIVES where level > 1  and CONNECT_BY_ISLEAF = 1  connect by prior  internalorganizationnumber = p_internalorganizationnumber start with terminal_id = :terminal_id)";
+		Map paraMap=new HashMap();
+		paraMap.put("beginseal_date", beginseal_date);
+		paraMap.put("endseal_date", endseal_date);
+		if(terminal_id==null||"".equals(terminal_id.trim())){
+			terminal_id="88888888";
+		}
+		paraMap.put("terminal_id", terminal_id);
+		
+		SQL=SQL+" order by c.seal_date desc  ";
+		System.out.println("===SQL:"+SQL);
+		System.out.println("===paraMap:"+paraMap);
+		TabsBo tabsBoModle = TabsDao.pagingObjectForSql(SQL, this.tabsBo.getDangqym(), this.tabsBo.getFenysl(), paraMap);
+		List<CCBDailyLog> result = new ArrayList<CCBDailyLog>();
+		for (Iterator it = tabsBoModle.getList().iterator(); it.hasNext();) 
+		{
+			Object[] element = (Object[]) it.next();
+			CCBDailyLog ccbdailylog = new CCBDailyLog();
+			ccbdailylog.setLegalname(String.valueOf(element[0]==null?"":element[0]));
+			ccbdailylog.setTerminal_id(String.valueOf(element[1]==null?"":element[1]));
+			ccbdailylog.setAmountsum(new BigDecimal(String.valueOf(element[2]==null?"":element[2])));
+			ccbdailylog.setPoundagesum(new BigDecimal(String.valueOf(element[3]==null?"":element[3])));
+			ccbdailylog.setSeal_date(String.valueOf(element[4]==null?"":element[4]));
+			
+			result.add(ccbdailylog);
 		}
 		tabsBoModle.setList(result);
 		return tabsBoModle;

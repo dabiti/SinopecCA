@@ -228,15 +228,15 @@ public class LoginAction extends ExDispatchAction {
 							 */
 							Map juesMap = privilegeService
 									.getPrivilegeForMenue(clerkCode);
-							if (!(manageFlag && (clerk.getOrgcode() + systemConfig
-									.getSuperManager()).equals(loginForm
-									.getCode()))) {
-								if (juesMap.size() <= 0) {
-									return this.showMessageJSP(mapping,
-											request, "login.error",
-											"该柜员尚未分配权限，请联系管理员!");
-								}
-							}
+//							if (!(manageFlag && (clerk.getOrgcode() + systemConfig
+//									.getSuperManager()).equals(loginForm
+//									.getCode()))) {
+//								if (juesMap.size() <= 0) {
+//									return this.showMessageJSP(mapping,
+//											request, "login.error",
+//											"该柜员尚未分配权限，请联系管理员!");
+//								}
+//							}
 							clerk.setJuesMap(juesMap);
 							clerk.setRoleStr(StringUtil.mapToString(juesMap));
 							String roleName = clerkManageService

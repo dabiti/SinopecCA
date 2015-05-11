@@ -9,24 +9,10 @@ public class CCBDailyLog implements Serializable{
 	private String terminal_id;
 	private BigDecimal amountsum;
 	private BigDecimal poundagesum;
-	private String seal_type;
 	private String seal_date;
-	private String card_type;
-	private String seal_time;
+	private String legalname;
 	
-	public String getSeal_time() {
-		return seal_time;
-	}
-
-	public void setSeal_time(String seal_time) {
-		this.seal_time = seal_time;
-	}
-	public String getCard_type() {
-		return card_type;
-	}
-	public void setCard_type(String card_type) {
-		this.card_type = card_type;
-	}
+	
 	public String getTerminal_id() {
 		return terminal_id;
 	}
@@ -52,12 +38,7 @@ public class CCBDailyLog implements Serializable{
 		this.poundagesum = poundagesum;
 	}
 
-	public String getSeal_type() {
-		return seal_type;
-	}
-	public void setSeal_type(String seal_type) {
-		this.seal_type = seal_type;
-	}
+
 	public String getSeal_date() {
 		return seal_date;
 	}
@@ -65,5 +46,15 @@ public class CCBDailyLog implements Serializable{
 		this.seal_date = seal_date;
 	}
 
+	public String getLegalname() {
+		return legalname;
+	}
+
+	public void setLegalname(String legalname) {
+		this.legalname = legalname;
+	}
+
+	
+	
 	
 }

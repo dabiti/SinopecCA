@@ -44,7 +44,7 @@
 			$.messager.show({
 				title:'【欢迎使用中石化对账系统】',
 				height:200,
-				msg:'${product_period}<br><br>${clerk.orgname}<br><br>IP:${clerk.ip}',
+				msg:'<br><br>${clerk.orgname}<br><br>IP:${clerk.ip}',
 				timeout:5000,
 				showType:'show'
 			});

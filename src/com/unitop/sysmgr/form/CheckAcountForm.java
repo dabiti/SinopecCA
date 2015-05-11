@@ -52,9 +52,8 @@ public class CheckAcountForm extends ActionForm {
 		this.card_type = null;
 		if (arg1.getServletPath().equals("/checkaccount.do"))
 		{
-			beginseal_date = DateTool.getNowDayForYYYMMDD();
-			endseal_date = DateTool.getThreeMonthAgoYYYMMDD();
-			
+				beginseal_date = DateTool.getNowDayForYYYMMDD().substring(0,7)+"-01";
+				endseal_date = DateTool.getNowDayForYYYMMDD();
 		}
 	}
 

@@ -492,4 +492,32 @@ public class SystemMgrServiceImpl extends BaseServiceImpl implements SystemMgrSe
 		return list;
 	}
 
+	
+	
+	/*
+	 * 中石化权限校验
+	 */
+	public boolean CanOperSite(String OperTer
+			, String DesTer) {
+		Session session = this.getHibernateSession();
+		boolean ReturnValue = false;
+		try {
+			if (OperTer.equals(DesTer)) {
+				ReturnValue = true;
+			} else {
+				String sql = "SELECT internalorganizationnumber as C FROM organarchives "
+						+ "WHERE internalorganizationnumber IN ("
+						+ "select internalorganizationnumber from organarchives connect by prior internalorganizationnumber=p_internalorganizationnumber start with terminal_id=:OperTer"
+						+ ") AND terminal_id=:DesTer";
+				SQLQuery qu = session.createSQLQuery(sql);
+				qu.setString("OperTer", OperTer);
+				qu.setString("DesTer", DesTer);
+				List list = qu.list();
+				ReturnValue = list.size() == 1;
+			}
+		} finally {
+			this.closeSession(session);
+		}
+		return ReturnValue;
+	}
 }

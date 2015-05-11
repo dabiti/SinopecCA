@@ -32,4 +32,10 @@ public interface SystemMgrService {
 	//获取下一个凭证号
 	public String getPZHSequence();
 	public String getSystetemYestoDay();
+	
+	/*
+	 * 中石化权限校验
+	 */
+	public boolean CanOperSite(String OperTer
+			, String DesTer);
 }

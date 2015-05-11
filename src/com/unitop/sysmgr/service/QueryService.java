@@ -46,5 +46,7 @@ public interface QueryService {
 	TabsBo findCCBBills(String legalname, String terminal_id, String card_id,
 			String seal_type, String carid_type, BigDecimal beginamount,
 			BigDecimal endamount, String beginseal_date, String endseal_date);
+	TabsBo findSumAccount(String terminal_id, String beginseal_date,
+			String endseal_date);
 }
 
