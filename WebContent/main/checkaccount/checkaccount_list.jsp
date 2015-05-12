@@ -36,27 +36,29 @@
 			 });
 			})
 		function checkendDate(){
-			
-			var begindate=$("#begindate").val();
-	
+			var begindate=$("#beginseal_date").val();
 			if(begindate==null||begindate.length==0){
 				$("#abc").html('起始日期不能为空!');
+				alert("5");
 				return false;
 			}
-			var enddate=$("#enddate").val();
+			var enddate=$("#endseal_date").val();
 			if(enddate==null||enddate.length==0){
 				$("#abc").html('终止日期不能为空!');
 				return false;
 			}
 			if(enddate < begindate){
+				$("#abc").html('');
 				$("#abc1").html('终止日期不能早于起始日期');
-				//alert("111111");
 				return false;
 				}else{
 				$("#abc").html('');
 				return true;
 			}
 		}
+		
+		
+		
 
 		function checkAccount(){
 			var zhangh = $("#zhangh").val();
@@ -92,7 +94,7 @@
 
 			}
 		function onsubmit1(){
-		//	 if(!checkendDate())return;
+			 if(!checkendDate())return;
 			 $("#form1").submit();
 
 		}
@@ -152,7 +154,7 @@
 								</td>
 								<td class="class1_td alignright">交易时间：</td>
 								<td class="class1_td alignleft">
-										<html:text property="beginseal_date" styleId="begindate" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="endseal_date" styleId="enddate" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
+										<html:text property="beginseal_date" styleId="beginseal_date" styleClass="inputField date_input required"  onclick="WdatePicker()" />－<html:text property="endseal_date" styleId="endseal_date" styleClass="inputField date_input required"  onclick="WdatePicker()"  />
 								</td>
 								
 								<td class="class1_td alignright">交易类型：</td>
