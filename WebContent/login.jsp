@@ -28,12 +28,12 @@
 		function validateInput(clerktype){
 			var reg;
 			if($("#clerknum_7")==null||$("#clerknum_7").val()==""){
-					alert("柜员号不可为空");
+					alert("用户号不可为空");
 					return false;
 			}else{
 					reg = /^\d{5,7}$/;
 					if(reg!=null&&!reg.test($("#clerknum_7").val())){
-						alert("柜员号格式不正确");
+						alert("用户号格式不正确");
 						return false; 
 					}
 			};

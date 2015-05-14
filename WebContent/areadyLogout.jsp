@@ -43,7 +43,7 @@ function logout2(){
                 <td width="30%" bgcolor="#FFFFFF" class="noline"><div align="right"><img src="<%=request.getContextPath() %>/images/7.png" width="128" height="128" align="absmiddle" /></div></td>
                 <td width="3%"  bgcolor="#FFFFFF" class="noline"></td>
                 <td width="50%"  bgcolor="#FFFFFF" class="place noline">
-					<B>柜员已签退!</font><a class="user_icon02" onclick="logout2();" href="">重新登录!</a></>
+					<B>用户已签退!</font><a class="user_icon02" onclick="logout2();" href="">重新登录!</a></>
                 </td>
               </tr>
           </table></td>

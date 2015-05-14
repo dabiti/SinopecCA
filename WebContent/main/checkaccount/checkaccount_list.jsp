@@ -228,7 +228,7 @@
 						items="list" var="zhanghtbb"  rowsDisplayed="${ec_yemjlts}" 
 						action="${pageContext.request.contextPath}/checkaccount.do"
 						imagePath="${pageContext.request.contextPath}/images/table/*.gif">
-<%--						<ec:exportXls fileName="zhanghtbrz.xls" tooltip="Export Exl" ></ec:exportXls>--%>
+						<ec:exportXls fileName="checkaccount.xls" tooltip="Export Exl" ></ec:exportXls>
 						
 						<ec:row >
 							<ec:column property="legalname" title="石化网点名称" cell="org.extremecomponents.table.cell.DisplayCell" />

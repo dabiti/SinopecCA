@@ -14,6 +14,9 @@
 		<property name="url" value="jdbc:oracle:thin:@192.168.12.99:1521:orcl" />
 		<property name="username" value="sinopec" />
 		<property name="password" value="sinopec" />
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.113.20:1521:gdeep" />
+		<property name="username" value="sinopec" />
+		<property name="password" value="i68h0m5c4de" /> -->
 		<property name="initialSize" value="100" />
 		<property name="maxWait" value="60000" />
 		<property name="maxIdle" value="50" />

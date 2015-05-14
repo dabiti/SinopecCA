@@ -25,12 +25,12 @@
 		function validateInput(clerktype){
 			var reg;
 			if($("#clerknum_7")==null||$("#clerknum_7").val()==""){
-					alert("柜员号不可为空");
+					alert("用户号不可为空");
 					return false;
 			}else{
 					reg = /^\d{5,7}$/;
 					if(reg!=null&&!reg.test($("#clerknum_7").val())){
-						alert("柜员号格式不正确");
+						alert("用户号格式不正确");
 						return false; 
 					}
 			};
@@ -45,7 +45,7 @@
 					}
 				};
 				return true;
-			//核心柜员验证
+			//核心用户验证
 		}
 		</script>
 	</head>
@@ -91,7 +91,7 @@
 							</thead>
 							<tr>
 								<td width="44%" class="class1_td alignright">
-									柜员代码:								</td>
+									用户代码:								</td>
 								<td width="56%" class="class1_td alignleft">
 									<html:text styleId="clerknum_7" property="code"  styleClass="inputField" onkeydown="if(event.keyCode==13)event.keyCode=9" />
 							  </td>

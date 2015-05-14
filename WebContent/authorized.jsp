@@ -35,7 +35,7 @@
 					
 				}
 		
-		   $("#yemtitle").html(checkType=="授权"?"复核":checkType+"柜员身份验证");
+		   $("#yemtitle").html(checkType=="授权"?"复核":checkType+"用户身份验证");
 			   $("#form1").validate({
 			   errorLabelContainer:"#error div.error",
 			   wrapper:"li",
@@ -52,7 +52,7 @@
 			 $("#clerknumMsg").text('');
 			 var clerknum = $("#clerknum").val();
 			 if(clerknum==null||clerknum.length==0){
-				 $("#clerknumMsg").text('请输入柜员号!');
+				 $("#clerknumMsg").text('请输入用户号!');
 					return;
 				}
 			 var strTZ =  getFingerMsg();
@@ -88,11 +88,11 @@
 					   }
 					   if(data==0)
 					{
-						alert(checkType+"柜员不存在!");
+						alert(checkType+"用户不存在!");
 					}
 					if(data==4)
 					{
-						alert(checkType+"柜员不能为登录柜员!");
+						alert(checkType+"用户不能为登录用户!");
 					}
 					if(data==5)
 					{
@@ -118,7 +118,7 @@
 					}
 					if(data==6)
 					{
-						alert("柜员没有复核的权限!");
+						alert("用户没有复核的权限!");
 					}
 					error_counts++;
 					if(error_counts>=3)
@@ -156,7 +156,7 @@
 							</thead>
 							<tr>
 								<td class="class1_td w250">
-									柜员号：
+									用户号：
 								</td>
 								<td class="class1_td alignleft">
 									<input id=clerknum name=clerknum type='text' class="inputField required clerknum"  style="width:150px;"/><span style="color: red" id="clerknumMsg"></span>
@@ -164,7 +164,7 @@
 							</tr>
 							<tr>
 								<td class="class1_td w250">
-									柜员密码：
+									用户密码：
 								</td>
 								<td class="class1_td alignleft">
 									<input id=password name=password type='password' class="inputField required clerk_password"  style="width:150px;"/>

@@ -20,9 +20,9 @@
 			  
 			  var url = "ajax.do?method=getJiejrgl&year="+year;
 			  var monthArray = doJSON(url);
-			  //登录超时 返回HTML页面 需要提示柜员 正常数据不会超过12*31数据量
+			  //登录超时 返回HTML页面 需要提示用户 正常数据不会超过12*31数据量
 			  if(monthArray.length>500)
-			 	 alert("获取数据失败,可能柜员登录超时,请尝试重新登录!");
+			 	 alert("获取数据失败,可能登录超时,请尝试重新登录!");
 			  var month = monthArray.split(",");
 			   
 			  for(var n=1; n<=month.length ;n++)

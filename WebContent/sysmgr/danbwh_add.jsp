@@ -80,7 +80,7 @@ $("#form1").validate({
 	    <tr>
           <td class="class1_td w250">功能名称：</td>
           <td class="class1_td alignleft"><input id="gongnmc"  name="gongnmc" type="text" class="inputField required"/>
-          *所要定制的功能名称，如：柜员信息查询
+          *所要定制的功能名称，如：用户信息查询
           </td> 
         </tr>
         <tr>

@@ -140,9 +140,9 @@
 					用户：${clerk.name}[${clerk.code}]
 					<!-- 角色: ${clerk.postName} -->
 					<!-- <b class="user_icon01"/><a class="user2" href="commonProblem.jsp" target="mainF0">常见问题解答</a> -->
-					<c:if test="${clerk.leixbs eq '0'}">
+<%-- 					<c:if test="${clerk.leixbs eq '0'}">
 					<b class="user_icon02"/><a class="user2" href="forwordchangepwd.do" target="mainF0">修改密码</a>
-					</c:if>
+					</c:if> --%>
 					<b class="user_icon02"/><a class="user2" href="login.jsp" onclick="logout2();" target="_parent">安全退出</a>
 				  </TD>							
 			</tr>	

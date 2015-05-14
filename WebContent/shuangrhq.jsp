@@ -34,7 +34,7 @@
 							</thead>
 							<tr>
 								<td class="class1_td w250">
-									柜员号：
+									用户号：
 								</td>
 								<td class="class1_td alignleft">
 									<input id=clerknum name=clerknum type='text' class="inputField required clerknum"  style="width:150px;"/>
@@ -42,7 +42,7 @@
 							</tr>
 							<tr>
 								<td class="class1_td w250">
-									柜员密码：
+									用户密码：
 
 
 								</td>
