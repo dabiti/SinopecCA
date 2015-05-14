@@ -129,9 +129,7 @@
 			<tr>
 				<td align="right" class="user">
 				<a class="menu_in"  target="mainF0"  id="chaxun" ></a>
-					<c:if test="${clerk.wdFlag !='0'}" >
-					分行机构：${clerk.shOrgName}[${clerk.shOrgCode}]
-					</c:if>
+				
 				</td>
 			</tr>
 			<tr align="right">
